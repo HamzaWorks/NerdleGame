@@ -5,13 +5,13 @@ typedef struct Entier Entier;
 struct Entier
 {
 	int n;
-	Entier* next;
+	Entier* suivant;
 };
 
 typedef struct ListeEntiers ListeEntiers;
 struct ListeEntiers
 {
-	ListeEntiers* list;
+	ListeEntiers* premier;
 };
 
 ListeEntiers* initialiserListeEntiers(int taille); // Renvoie une liste de 0 à taille

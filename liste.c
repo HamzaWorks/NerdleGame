@@ -4,8 +4,7 @@
 ListeEntiers* initialiserListeEntiers(int taille)
 {
 	ListeEntiers* Liste=malloc(sizeof(*Liste));
-	Entier n;
-	n = Liste;
+	Entier* n = Liste;
 	for(int i=0;i<taille;i++)
 	{
 		
@@ -15,8 +14,7 @@ ListeEntiers* initialiserListeEntiers(int taille)
 void ajouterNombre(ListeEntiers* L, int n)
 {
 	Entier* x = malloc(sizeof(*x));
-	x->suivant
+	x->next = L->list;
+	L->list = x;
 }
 
-
-rtiur
