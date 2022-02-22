@@ -1,5 +1,5 @@
-#ifndef _LISTE_H_
-#define _LISTE_H_
+#ifndef LISTE_H_INCLUDED
+#define LISTE_H_INCLUDED
 
 typedef struct Entier Entier;
 struct Entier
@@ -14,9 +14,9 @@ struct ListeEntiers
 	Entier* premier;
 };
 
-ListeEntiers* initialiserListeEntiers(int taille); 	// Renvoie une liste de 0 Ã  taille
-void ajouterNombre(ListeEntiers* L, int n); 		// Ajoute un nombre Ã  la liste
-void afficherListeEntiers(ListeEntiers* L);
+ListeEntiers* initialiserListeEntiers(int taille); 	// Renvoie une liste de 0 à (taille-1)
+void ajouterNombre(ListeEntiers* L, int n); 		// Ajoute un nombre à la liste
+void afficherListeEntiers(ListeEntiers* L);			// Affiche la liste
+int tailleListe(ListeEntiers* L);
 
-
-#endif
+#endif // LISTE_H_INCLUDED

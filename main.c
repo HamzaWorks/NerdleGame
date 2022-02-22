@@ -1,9 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
 
 int main()
 {
-	ListeEntiers* L = initialiserListeEntiers(100);	
+    ListeEntiers* L = initialiserListeEntiers(100);
 	afficherListeEntiers(L);
-	return 0;
+	printf("\nTaille de la liste = %d", tailleListe(L));
+    return 0;
 }

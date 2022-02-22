@@ -8,6 +8,7 @@ ListeEntiers* initialiserListeEntiers(int taille)
 	Entier* n = malloc(sizeof(*n));
 	n->nombre = 0;
 	n->suivant = NULL;
+	Liste->premier = n;
 	for(int i=1;i<taille;i++)
 	{
 		ajouterNombre(Liste,i);
@@ -15,6 +16,7 @@ ListeEntiers* initialiserListeEntiers(int taille)
 
 	return Liste;
 }
+
 
 void ajouterNombre(ListeEntiers* L, int n)
 {
@@ -33,7 +35,16 @@ void afficherListeEntiers(ListeEntiers* L)
 		actuel = actuel->suivant;
 	}
 	printf("%d ",actuel->nombre);
-
 }
 
-
+int tailleListe(ListeEntiers* L)
+{
+	int i=0;
+	Entier* actuel = L->premier;
+	while (actuel != NULL)
+	{
+		i++;
+		actuel = actuel->suivant;
+	}
+	return i;
+}

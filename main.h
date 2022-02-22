@@ -1,7 +1,6 @@
-#ifndef _MAIN_H_
-#define _MAIN_H_
+#ifndef MAIN_H_INCLUDED
+#define MAIN_H_INCLUDED
 
 #include "liste.h"
 
-
-#endif
+#endif // MAIN_H_INCLUDED
