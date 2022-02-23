@@ -2,7 +2,7 @@
 #define MAIN_H_INCLUDED
 
 #include "liste.h"
-#include "headers/entree.h"
+#include "entree.h"
 #include "test\test.h"
 
 #define TEST_ALL 1

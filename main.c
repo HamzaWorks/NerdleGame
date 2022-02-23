@@ -5,10 +5,13 @@
 
 int main()
 {
-  	/*if(TEST_ALL=1)
-        test();*/
-    char s[9];
-    creationEntree1(s,100,4,'/');
-    printf("%s",s);
-    printf("\ntest : %c", charr((100/10)%10));
+	ListeEntiers* L = initialiserListeEntiers(100);
+	afficherListeEntiers(L);
+	int invalide[10];
+	recupererChiffreInvalide(invalide);
+	/*printf("\n\nPurge de %d %d\n",invalide[0],invalide[1]);
+	purgerListe(L,invalide);*/
+	supprimerNombre(L,99);
+	afficherListeEntiers(L);
+  	return 0;
 }

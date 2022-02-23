@@ -17,6 +17,8 @@ struct ListeEntiers
 ListeEntiers* initialiserListeEntiers(int taille); 	// Renvoie une liste de 0 à (taille-1)
 void ajouterNombre(ListeEntiers* L, int n); 		// Ajoute un nombre à la liste
 void afficherListeEntiers(ListeEntiers* L);			// Affiche la liste
-int tailleListe(ListeEntiers* L);
+int tailleListe(ListeEntiers* L);					// récupère la liste des chiffre invalides
+void supprimerNombre(ListeEntiers* L, int n);		// supprime n de la liste
+void purgerListe(ListeEntiers* L,int* invalide);
 
 #endif // LISTE_H_INCLUDED
