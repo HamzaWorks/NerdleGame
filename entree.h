@@ -4,9 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char* creationEntree1(int a, int b, char oper);
+void creationEntree1(char* entree,int a, int b, char oper);
 int intt(char c);
 char charr(int n);
+int resultatOperation(int a, int b, char oper);
 
 
 #endif

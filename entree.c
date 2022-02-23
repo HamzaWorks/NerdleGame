@@ -1,10 +1,8 @@
 #include "entree.h"
 
-char* creationEntree1(int a, int b, char oper)
+void creationEntree1(char* entree,int a, int b, char oper)
 {
-	char entree[9];
-	entree[8] = '\0';
-	if(a>10 && b > 10)
+	if(a>=10 && b >= 10)
 	{
 		entree[0] = charr(a/10);
 		entree[1] = charr(a%10);
@@ -24,13 +22,44 @@ char* creationEntree1(int a, int b, char oper)
 					entree[7] = charr((a+b)%10);
 					break;
 
+				case '*':
+					entree[6] = charr((a*b)/10);
+					entree[7] = charr((a*b)%10);
+					break;
+
 				default:
 					break;
 			}
 	}
 
-	return &entree;
+	if(resultatOperation())
 
+
+
+	entree[8] = '\0';
+
+}
+
+int resultatOperation(int a, int b, char oper)
+{
+	switch (oper)
+	{
+		case '*':
+			return a*b;
+			break;
+
+		case '+':
+			return a+b;
+			break;
+
+		case '-':
+			return a-b;
+			break;
+
+		case '/':
+			return a/b;
+			break;
+	}
 }
 
 int intt(char c)
