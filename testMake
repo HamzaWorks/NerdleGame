@@ -1,0 +1,4 @@
+@echo off
+set SRC=src01
+
+echo %SRC%
