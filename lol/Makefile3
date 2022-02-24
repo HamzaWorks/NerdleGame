@@ -1,0 +1,29 @@
+CC = gcc
+CFLAGS = -W -Wall -g
+LDFLAGS = 
+
+OBJDIR = ./bin
+
+SRC = $(wildcard *.c)
+OBJS = $(SRC:.c=.o)
+AOUT = $(OBJDIR)/prog
+ 
+all : $(AOUT) 
+ 
+$(AOUT) : $(OBJS)
+	$(CC) $(LDFLAGS) -o $@ $^
+
+$(OBJDIR)main.o : main.c main.h liste.h entree.h
+	$(CC) $(LDFLAGS) -o $(OBJDIR)/$@ $^
+
+$(OBJDIR)liste.o: liste.c liste.h
+	$(CC) $(LDFLAGS) -o $(OBJDIR)/$@ $^
+
+$(OBJDIR)entree.o: entree.c entree.h
+	$(CC) $(LDFLAGS) -o $(OBJDIR)/$@ $^
+
+clean :
+	del /F /Q *.o
+	@echo Clean done.
+cleaner : clean
+	del $(AOUT)

@@ -1,18 +1,39 @@
-CC = gcc
-CFLAGS = -W -Wall -g
-LDFLAGS = 
- 
-SRC = $(wildcard *.c)
-OBJS = $(SRC:.c=.o)
-AOUT = prog
- 
-all : $(AOUT) 
- 
-prog : $(OBJS)
-	$(CC) $(LDFLAGS) -o $@ $^
-%.o : %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
-clean :
-	@rm *.o
-cleaner : clean
-	@rm $(AOUT)
+TARGET   = prog
+
+CC       = gcc
+# compiling flags here
+CFLAGS   = -Wall -I.
+
+LINKER   = gcc
+# linking flags here
+LFLAGS   = -Wall -I. -lm
+
+# change these to proper directories where each file should be
+SRCDIR   = src
+OBJDIR   = obj
+BINDIR   = bin
+
+SOURCES  := $(wildcard $(SRCDIR)/*.c)
+INCLUDES := $(wildcard $(SRCDIR)/*.h)
+OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+rm       = rm -f
+
+
+$(BINDIR)/$(TARGET): $(OBJECTS)
+	@$(LINKER) $(OBJECTS) $(LFLAGS) -o $@
+	@echo "Linking complete!"
+
+$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Compiled "$<" successfully!"
+
+.PHONY: clean
+clean:
+	cd obj
+	del /F /Q *.o
+	@echo "Cleanup complete!"
+
+.PHONY: remove
+remove: clean
+	@$(rm) $(BINDIR)/$(TARGET)
+	@echo "Executable removed!"
