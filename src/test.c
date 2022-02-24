@@ -53,24 +53,25 @@ void testFonctionChiffreDesDizaines()
 
 void testFoncionPurgerListe()
 {
-	ListeEntiers* L = initialiserListeEntiers(100);
+	ListeEntiers* L = initialiserListeEntiers(200);
 	printf("Liste initiale :\n");
 	afficherListeEntiers(L);
-	//printf("Liste purgee de 4, 2, 1 et 5");
-	purgerListe(L,4);
+	printf("\nListe purgee de 4, 2, 1 et 5");
+	purgerListe(L,1);
 	//purgerListe(L,2);
-	//purgerListe(L,1);
+	purgerListe(L,2);
 	//purgerListe(L,5);
-	//afficherListeEntiers(L);
+	afficherListeEntiers(L);
 }
 
 void testSupprimerListe()
 {
 	ListeEntiers* L = initialiserListeEntiers(50);
 	afficherListeEntiers(L);
-	printf("\nSupression de 4 45 20 et 8\n");
+	printf("\nSupression de 4 45 20 44 et 8\n");
 	supprimerNombre(L,4);
 	supprimerNombre(L,45);
+	supprimerNombre(L,44);
 	supprimerNombre(L,20);
 	supprimerNombre(L,8);
 	afficherListeEntiers(L);

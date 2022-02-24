@@ -105,4 +105,5 @@ void recupererChiffreInvalide(int* invalide)
 		i++;
 	}
 	invalide[i]=55;
+	fclose(f);
 }
