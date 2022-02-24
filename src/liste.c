@@ -123,18 +123,9 @@ int chiffreDesDizaines(int n)
 	if(n>=100)
 		return (n/10)%10;
 	else if (n<100)
-		return n%10;
+		return n/10;
 	else
 		return 0;
-}
-
-void testFonctionChiffreDesUnites()
-{
-	printf("Le chiffre des unites de 40 est %d\n",chiffreDesUnites(40));
-	printf("Le chiffre des unites de 68 est %d\n",chiffreDesUnites(68));
-	printf("Le chiffre des unites de 71 est %d\n",chiffreDesUnites(71));
-	printf("Le chiffre des unites de 99 est %d\n",chiffreDesUnites(99));
-	printf("Le chiffre des unites de 0 est %d\n",chiffreDesUnites(0));
 }
 
 

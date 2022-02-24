@@ -9,4 +9,9 @@
 #define TEST_ALL 1
 #define TEST_FONCTION_CHIFFRE 1
 
+void testAll();							// Lance les tests
+
+void testFonctionChiffreDesUnites(); 	// Teste la fonction metionnee
+void testFonctionChiffreDesDizaines();	// Teste la fonction metionnee
+
 #endif

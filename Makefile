@@ -2,11 +2,11 @@ TARGET   = prog
 
 CC       = gcc
 # compiling flags here
-CFLAGS   = -Wall -I.
+CFLAGS   = -Wall 
 
 LINKER   = gcc
 # linking flags here
-LFLAGS   = -Wall -I. -lm
+LFLAGS   = 
 
 # change these to proper directories where each file should be
 SRCDIR   = src
@@ -20,20 +20,21 @@ rm       = rm -f
 
 
 $(BINDIR)/$(TARGET): $(OBJECTS)
-	@$(LINKER) $(OBJECTS) $(LFLAGS) -o $@
-	@echo "Linking complete!"
+	$(LINKER) $(OBJECTS) $(LFLAGS) -o $@
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "Compiled "$<" successfully!"
+	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:
-	cd obj
-	del /F /Q *.o
-	@echo "Cleanup complete!"
+	del /F /Q .\obj\*.o
+	@echo All binary files removed.
+	
 
 .PHONY: remove
 remove: clean
-	@$(rm) $(BINDIR)/$(TARGET)
-	@echo "Executable removed!"
+	del /F /Q .\bin\prog.exe
+	@echo Executable and all binary files removed.
+	
+run: $(BINDIR)/$(TARGET)
+	bin/prog.exe
