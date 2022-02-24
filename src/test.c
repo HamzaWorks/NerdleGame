@@ -1,8 +1,10 @@
 #include "test.h"
 
 #define TEST_FONCTION_CHIFFRE 0
-#define TEST_PURGER_LISTE 1
+#define TEST_PURGER_LISTE 0
 #define TEST_SUPPRIMER_NOMBRE 0
+#define TEST_ENTREE_POSSIBLE 1
+#define TEST_GENERE_LISTE 0
 
 void testAll()
 {
@@ -23,6 +25,16 @@ void testAll()
 	if(TEST_SUPPRIMER_NOMBRE == 1)
 	{
 		testSupprimerListe();
+	}
+
+	if(TEST_ENTREE_POSSIBLE == 1)
+	{
+		testEntreePossible();
+	}
+
+	if(TEST_GENERE_LISTE == 1)
+	{
+		testGenererListeEntiers();
 	}
 }
 
@@ -54,13 +66,12 @@ void testFonctionChiffreDesDizaines()
 void testFoncionPurgerListe()
 {
 	ListeEntiers* L = initialiserListeEntiers(200);
+	int tab[10];
+	recupererChiffreInvalide(tab);
 	printf("Liste initiale :\n");
 	afficherListeEntiers(L);
-	printf("\nListe purgee de 4, 2, 1 et 5");
-	purgerListe(L,1);
-	//purgerListe(L,2);
-	purgerListe(L,2);
-	//purgerListe(L,5);
+	printf("\nListe purgee");
+	purgerListeTab(L,tab);
 	afficherListeEntiers(L);
 }
 
@@ -75,5 +86,22 @@ void testSupprimerListe()
 	supprimerNombre(L,20);
 	supprimerNombre(L,8);
 	afficherListeEntiers(L);
+}
+
+void testEntreePossible()
+{
+	ListeEntiers* L1 = genererListeEntiersDeuxChiffres();
+	ListeEntiers* L2 = genererListeEntiersDeuxChiffres();
+	afficherListeEntiers(L1);
+	afficherListeEntiers(L2);
+	entreePossible(L1,L2,'+');
+}
+
+void testGenererListeEntiers()
+{
+	printf("Voici la generation d'une liste de tous les entiers de 0 a 9 :");
+	afficherListeEntiers(genererListeEntiersUnChiffre());
+	printf("\nVoici la generation d'une liste de tous les entiers de 10 a 99 :");
+	afficherListeEntiers(genererListeEntiersDeuxChiffres());
 }
 

@@ -95,7 +95,7 @@ char charr(int n)
 
 void recupererChiffreInvalide(int* invalide)
 {
-	FILE* f = fopen("invalides.txt","r");
+	FILE* f = fopen("test/invalides.txt","r");
 	int n=99;
 	int i=0;
 	while (n != 55)
@@ -107,3 +107,27 @@ void recupererChiffreInvalide(int* invalide)
 	invalide[i]=55;
 	fclose(f);
 }
+
+void entreePossible(ListeEntiers* L1, ListeEntiers* L2, char oper)
+{
+	FILE* f = fopen("test/EntreesPossible.txt","w+");
+	fprintf(f,"LISTE : \n");
+	Entier* actuel1 = L1->premier;
+	Entier* actuel2 = L2->premier;
+	char entree[8];
+	char* s = "THIS IS A TEST";
+	while(actuel1 != NULL)
+	{
+		while(actuel2 != NULL)
+		{
+			if(resultatOperation(actuel1->nombre, actuel2->nombre,oper) < 100)
+			{
+				creationEntree1(entree,actuel1->nombre,actuel2->nombre,oper);
+				fprintf(f,"hello : %s\n",entree);
+			}
+			actuel2 = actuel2->suivant;
+		}
+		actuel1 = actuel1->suivant;
+		actuel2 = L2->premier;
+	}
+}  

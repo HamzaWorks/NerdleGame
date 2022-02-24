@@ -108,4 +108,29 @@ int chiffreDesCentaines(int n)
 	return n/100;
 }
 
+void purgerListeTab(ListeEntiers* L, int* tab)
+{
+	int i=0;
+	while(tab[i] != 55)
+	{
+		purgerListe(L,tab[i]);
+		i++;
+	}
+}
+
+ListeEntiers* genererListeEntiersUnChiffre()
+{
+	ListeEntiers* L = initialiserListeEntiers(10);
+	return L;
+}
+
+ListeEntiers* genererListeEntiersDeuxChiffres()
+{
+	ListeEntiers* L = initialiserListeEntiers(100);
+	for(int i=0;i<10;i++)
+	{
+		supprimerNombre(L,i);
+	}
+	return L;
+}
 

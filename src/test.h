@@ -13,6 +13,9 @@ void testFonctionChiffreDesDizaines();	// Teste la fonction mentionnee
 
 void testFoncionPurgerListe();			// Teste la fonction mentionnee
 void testSupprimerListe();
+void testEntreePossible();
+
+void testGenererListeEntiers();
 
 
 #endif
