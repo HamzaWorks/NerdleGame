@@ -12,5 +12,7 @@ void testFonctionChiffreDesUnites(); 	// Teste la fonction mentionnee
 void testFonctionChiffreDesDizaines();	// Teste la fonction mentionnee
 
 void testFoncionPurgerListe();			// Teste la fonction mentionnee
+void testSupprimerListe();
+
 
 #endif

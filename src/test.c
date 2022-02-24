@@ -1,9 +1,8 @@
 #include "test.h"
 
-#define TEST_ALL 1
 #define TEST_FONCTION_CHIFFRE 0
 #define TEST_PURGER_LISTE 1
-#define TEST_SUPPRIMER_NOMBRE 1
+#define TEST_SUPPRIMER_NOMBRE 0
 
 void testAll()
 {
@@ -19,6 +18,11 @@ void testAll()
 	{
 		printf("\nTest de purgerListe :\n\n");
 		testFoncionPurgerListe();
+	}
+
+	if(TEST_SUPPRIMER_NOMBRE == 1)
+	{
+		testSupprimerListe();
 	}
 }
 
@@ -38,7 +42,7 @@ void testFonctionChiffreDesDizaines()
 {
 	printf("Le chiffre des dizaines de 40 est %d\n",chiffreDesDizaines(40));
 	printf("Le chiffre des dizaines de 68 est %d\n",chiffreDesDizaines(68));
-	printf("Le chiffre des dizaines de 71 est %d\n",chiffreDesDizaines(71));
+	printf("Le chiffre des dizaines de 19 est %d\n",chiffreDesDizaines(19));
 	printf("Le chiffre des dizaines de 99 est %d\n",chiffreDesDizaines(99));
 	printf("Le chiffre des dizaines de 0 est %d\n",chiffreDesDizaines(0));
 	printf("Le chiffre des dizaines de 450 est %d\n",chiffreDesDizaines(450));
@@ -49,13 +53,26 @@ void testFonctionChiffreDesDizaines()
 
 void testFoncionPurgerListe()
 {
-	ListeEntiers* L = initialiserListeEntiers(20);
+	ListeEntiers* L = initialiserListeEntiers(100);
 	printf("Liste initiale :\n");
 	afficherListeEntiers(L);
-	printf("Liste purgee de 4 et 2");
-	int tab[3]; tab[0]=2; tab[1]=4; tab[2]=55;
-	purgerListe(L,tab);
-	afficherListeEntiers(L);
+	//printf("Liste purgee de 4, 2, 1 et 5");
+	purgerListe(L,4);
+	//purgerListe(L,2);
+	//purgerListe(L,1);
+	//purgerListe(L,5);
+	//afficherListeEntiers(L);
 }
 
+void testSupprimerListe()
+{
+	ListeEntiers* L = initialiserListeEntiers(50);
+	afficherListeEntiers(L);
+	printf("\nSupression de 4 45 20 et 8\n");
+	supprimerNombre(L,4);
+	supprimerNombre(L,45);
+	supprimerNombre(L,20);
+	supprimerNombre(L,8);
+	afficherListeEntiers(L);
+}
 

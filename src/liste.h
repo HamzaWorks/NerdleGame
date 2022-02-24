@@ -19,9 +19,10 @@ void ajouterNombre(ListeEntiers* L, int n); 		// Ajoute un nombre à la liste
 void afficherListeEntiers(ListeEntiers* L);			// Affiche la liste
 int tailleListe(ListeEntiers* L);					// récupère la liste des chiffre invalides
 void supprimerNombre(ListeEntiers* L, int n);		// supprime n de la liste
-void purgerListe(ListeEntiers* L,int* invalide);
+void purgerListe(ListeEntiers* L,int invalide);
 
-int chiffreDesUnites(int n);						// retounre le chiffre des unites
+int chiffreDesUnites(int n);						// retourne le chiffre des unites
 int chiffreDesDizaines(int n);						// retourne le chiffre des dizaines
+int chiffreDesCentaines(int n);
 
 #endif // LISTE_H_INCLUDED

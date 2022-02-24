@@ -71,27 +71,20 @@ void supprimerNombre(ListeEntiers* L, int n)
 	}
 }
 
-void purgerListe(ListeEntiers* L,int* invalide)
+void purgerListe(ListeEntiers* L,int invalide)
 {
-	int i = 0;
-	int n,inv;
-	Entier* actuel = L->premier;
-	while(invalide[i] != 55)
+	int n;
+	Entier* actuel=L->premier;
+	while (actuel->suivant != NULL)
 	{
-		actuel = L->premier;
-		printf("invalide = %d",invalide[i]);
-		while( actuel->suivant != NULL)
+		n = actuel->suivant->nombre;
+		printf("%d%d ",chiffreDesDizaines(n),chiffreDesUnites(n));
+		if(chiffreDesDizaines(n) == invalide || chiffreDesUnites(n) == invalide || chiffreDesCentaines(n) == invalide)
 		{
-			inv = invalide[i];
-			n=actuel->nombre;
-			if(chiffreDesUnites(n) == inv)
-			{
-				printf("%d\n",n);
-			}
-			actuel = actuel->suivant;
+			//printf("%d%d",chiffreDesDizaines(n),chiffreDesUnites(n));
+			actuel->suivant=actuel->suivant->suivant;
 		}
-		actuel = L->premier;
-		i++;
+		actuel = actuel->suivant;
 	}
 }
 
@@ -108,6 +101,11 @@ int chiffreDesDizaines(int n)
 		return n/10;
 	else
 		return 0;
+}
+
+int chiffreDesCentaines(int n)
+{
+	return n/100;
 }
 
 
