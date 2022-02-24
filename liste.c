@@ -78,7 +78,9 @@ void purgerListe(ListeEntiers* L,int* invalide)
 	Entier* actuel = L->premier;
 	while(invalide[i] != 55)
 	{
-		while( actuel != NULL)
+		actuel = L->premier;
+		printf("invalide = %d",invalide[i]);
+		while( actuel->suivant != NULL)
 		{
 			/*if(actuel->nombre >100)
 			{
@@ -100,14 +102,39 @@ void purgerListe(ListeEntiers* L,int* invalide)
 			}*/
 			inv = invalide[i];
 			n=actuel->nombre;
-			if(n%10 == inv)
+			printf("\ninvalide = %d, n = %d",inv,actuel->nombre);
+			/*if((n%10) == inv)
 			{
-					supprimerNombre(L,n);
-			}
+				supprimerNombre(L,n);
+			}*/
 			actuel = actuel->suivant;
 		}
 		i++;
 	}
+}
+
+int chiffreDesUnites(int n)
+{
+	return n%10;
+}
+
+int chiffreDesDizaines(int n)
+{
+	if(n>=100)
+		return (n/10)%10;
+	else if (n<100)
+		return n%10;
+	else
+		return 0;
+}
+
+void testFonctionChiffreDesUnites()
+{
+	printf("Le chiffre des unites de 40 est %d\n",chiffreDesUnites(40));
+	printf("Le chiffre des unites de 68 est %d\n",chiffreDesUnites(68));
+	printf("Le chiffre des unites de 71 est %d\n",chiffreDesUnites(71));
+	printf("Le chiffre des unites de 99 est %d\n",chiffreDesUnites(99));
+	printf("Le chiffre des unites de 0 est %d\n",chiffreDesUnites(0));
 }
 
 

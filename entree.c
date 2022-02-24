@@ -2,36 +2,6 @@
 
 void creationEntree1(char* entree,int a, int b, char oper)
 {
-	/*if(a>=10 && b >= 10)
-	{
-		entree[0] = charr(a/10);
-		entree[1] = charr(a%10);
-		entree[2] = oper;
-		entree[3] = charr(b/10);
-		entree[4] = charr(b%10); 
-		entree[5] = '=';
-		switch (oper)
-			{
-				case '-':
-					entree[6] = charr((a-b)/10);
-					entree[7] = charr((a-b)%10);
-					break;
-
-				case '+':
-					entree[6] = charr((a+b)/10);
-					entree[7] = charr((a+b)%10);
-					break;
-
-				case '*':
-					entree[6] = charr((a*b)/10);
-					entree[7] = charr((a*b)%10);
-					break;
-
-				default:
-					break;
-			}
-	}*/
-
 	int res = resultatOperation(a,b,oper);
 
 	if(res<10)

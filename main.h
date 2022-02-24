@@ -3,9 +3,9 @@
 
 #include "liste.h"
 #include "entree.h"
-#include "test\test.h"
+#include "test.h"
 
 #define TEST_ALL 1
-#define TEST_FONCTION_CREATIONENTREE1 0
+#define TEST_FONCTION_CHIFFRE
 
 #endif // MAIN_H_INCLUDED
