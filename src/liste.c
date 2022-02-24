@@ -82,33 +82,15 @@ void purgerListe(ListeEntiers* L,int* invalide)
 		printf("invalide = %d",invalide[i]);
 		while( actuel->suivant != NULL)
 		{
-			/*if(actuel->nombre >100)
-			{
-				if((actuel->nombre/100 == invalide[i]) || 
-					(((actuel->nombre)/10)%10 == invalide[i]) ||
-					((actuel->nombre)%10 == invalide[i]) )
-				supprimerNombre(L,actuel->nombre);
-			}
-			else if(actuel->nombre < 10)
-			{
-				if(actuel->nombre == invalide[i])
-					supprimerNombre(L,actuel->nombre);
-			}
-			else
-			{
-				if( (((actuel->nombre)/10) == invalide[i]) ||
-					(((actuel->nombre)%10) == invalide[i]))
-					supprimerNombre(L,actuel->nombre); 
-			}*/
 			inv = invalide[i];
 			n=actuel->nombre;
-			printf("\ninvalide = %d, n = %d",inv,actuel->nombre);
-			/*if((n%10) == inv)
+			if(chiffreDesUnites(n) == inv)
 			{
-				supprimerNombre(L,n);
-			}*/
+				printf("%d\n",n);
+			}
 			actuel = actuel->suivant;
 		}
+		actuel = L->premier;
 		i++;
 	}
 }

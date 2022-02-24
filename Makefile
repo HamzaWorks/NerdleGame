@@ -36,5 +36,5 @@ remove: clean
 	del /F /Q .\bin\prog.exe
 	@echo Executable and all binary files removed.
 	
-run: $(BINDIR)/$(TARGET)
+run: 
 	bin/prog.exe

@@ -24,6 +24,4 @@ void purgerListe(ListeEntiers* L,int* invalide);
 int chiffreDesUnites(int n);						// retounre le chiffre des unites
 int chiffreDesDizaines(int n);						// retourne le chiffre des dizaines
 
-void testFonctionChiffreDesUnites();
-
 #endif // LISTE_H_INCLUDED

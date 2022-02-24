@@ -1,5 +1,10 @@
 #include "test.h"
 
+#define TEST_ALL 1
+#define TEST_FONCTION_CHIFFRE 0
+#define TEST_PURGER_LISTE 1
+#define TEST_SUPPRIMER_NOMBRE 1
+
 void testAll()
 {
 	if(TEST_FONCTION_CHIFFRE == 1)
@@ -8,7 +13,12 @@ void testAll()
 		testFonctionChiffreDesUnites();
 		printf("\n\nTest de testFonctionchiffreDesDizaines :\n\n");
 		testFonctionChiffreDesDizaines();
+	}
 
+	if(TEST_PURGER_LISTE == 1)
+	{
+		printf("\nTest de purgerListe :\n\n");
+		testFoncionPurgerListe();
 	}
 }
 
@@ -37,5 +47,15 @@ void testFonctionChiffreDesDizaines()
 	printf("Le chiffre des dizaines de 1 est %d\n",chiffreDesDizaines(1));
 }
 
+void testFoncionPurgerListe()
+{
+	ListeEntiers* L = initialiserListeEntiers(20);
+	printf("Liste initiale :\n");
+	afficherListeEntiers(L);
+	printf("Liste purgee de 4 et 2");
+	int tab[3]; tab[0]=2; tab[1]=4; tab[2]=55;
+	purgerListe(L,tab);
+	afficherListeEntiers(L);
+}
 
 
