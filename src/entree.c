@@ -114,8 +114,7 @@ void entreePossible(ListeEntiers* L1, ListeEntiers* L2, char oper)
 	fprintf(f,"LISTE : \n");
 	Entier* actuel1 = L1->premier;
 	Entier* actuel2 = L2->premier;
-	char entree[8];
-	char* s = "THIS IS A TEST";
+	char entree[9];
 	while(actuel1 != NULL)
 	{
 		while(actuel2 != NULL)

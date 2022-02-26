@@ -25,13 +25,10 @@ $(BINDIR)/$(TARGET): $(OBJECTS)
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-.PHONY: clean
 clean:
 	del /F /Q .\obj\*.o
 	@echo All binary files removed.
 	
-
-.PHONY: remove
 remove: clean
 	del /F /Q .\bin\prog.exe
 	@echo Executable and all binary files removed.
