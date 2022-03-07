@@ -62,9 +62,9 @@ void supprimerNombre(ListeEntiers* L, int n)
 	{
 		if(actuel->suivant->nombre == n)
 		{
-			//Entier* aSupprimer = actuel->suivant;
+			Entier* aSupprimer = actuel->suivant;
 			actuel->suivant = actuel->suivant->suivant;
-			//free(aSupprimer);
+			free(aSupprimer);
 			return;
 		}
 		actuel = actuel->suivant;

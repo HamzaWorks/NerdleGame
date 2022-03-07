@@ -1,9 +1,9 @@
 #include "test.h"
 
 #define TEST_FONCTION_CHIFFRE 0
-#define TEST_PURGER_LISTE 0
+#define TEST_PURGER_LISTE 1
 #define TEST_SUPPRIMER_NOMBRE 0
-#define TEST_ENTREE_POSSIBLE 1
+#define TEST_ENTREE_POSSIBLE 0
 #define TEST_GENERE_LISTE 0
 
 void testAll()
@@ -65,13 +65,13 @@ void testFonctionChiffreDesDizaines()
 
 void testFoncionPurgerListe()
 {
-	ListeEntiers* L = initialiserListeEntiers(200);
+	ListeEntiers* L = initialiserListeEntiers(10);
 	int tab[10];
 	recupererChiffreInvalide(tab);
 	printf("Liste initiale :\n");
 	afficherListeEntiers(L);
 	printf("\nListe purgee");
-	purgerListeTab(L,tab);
+	//purgerListeTab(L,tab);
 	afficherListeEntiers(L);
 }
 
@@ -94,7 +94,7 @@ void testEntreePossible()
 	ListeEntiers* L2 = genererListeEntiersDeuxChiffres();
 	afficherListeEntiers(L1);
 	afficherListeEntiers(L2);
-	entreePossible(L1,L2,'+');
+	entreePossible(L1,L2,'-');
 }
 
 void testGenererListeEntiers()

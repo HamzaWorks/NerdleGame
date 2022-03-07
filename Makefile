@@ -35,3 +35,6 @@ remove: clean
 	
 run: 
 	bin/prog.exe
+
+gdb:
+	gdb bin/prog.exe
