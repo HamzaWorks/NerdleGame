@@ -19,5 +19,7 @@ void testGenererListeEntiers();
 
 void testRecupererChiffreInvalide();
 
+void testRecupererBonChiffre();
+
 
 #endif

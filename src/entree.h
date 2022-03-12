@@ -22,6 +22,7 @@ void entreePossibleAddition(ListeEntiers* L1, ListeEntiers* L2, int* tab);
 void genererEntreesPossiblesOper(int* tab, char oper);
 
 int neContientPas(int n, int* tab);
+void recupererBonChiffre(char* bons);
 
 
 #endif

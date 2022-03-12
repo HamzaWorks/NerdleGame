@@ -111,7 +111,7 @@ void recupererChiffreInvalide(int* invalide)
 
 void entreePossible(ListeEntiers* L1, ListeEntiers* L2, char oper)
 {
-	FILE* f = fopen("test/EntreesPossible.txt","w+");
+	FILE* f = fopen("test/entreesPossibles.txt","w+");
 	fprintf(f,"LISTE : \n");
 	Entier* actuel1 = L1->premier;
 	Entier* actuel2 = L2->premier;
@@ -136,7 +136,7 @@ void entreePossible(ListeEntiers* L1, ListeEntiers* L2, char oper)
 
 void entreePossibleSoustraction(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 {
-	FILE* f = fopen("test/EntreesPossible.txt","w+");
+	FILE* f = fopen("test/entreesPossibles.txt","w+");
 	fprintf(f,"LISTE : \n");
 	Entier* actuel1 = L1->premier;
 	Entier* actuel2 = L2->premier;
@@ -162,7 +162,7 @@ void entreePossibleSoustraction(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 
 void entreePossibleDivision(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 {
-	FILE* f = fopen("test/EntreesPossible.txt","w+");
+	FILE* f = fopen("test/entreesPossibles.txt","w+");
 	fprintf(f,"LISTE : \n");
 	supprimerNombre(L2,0);
 	Entier* actuel1 = L1->premier;
@@ -188,7 +188,7 @@ void entreePossibleDivision(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 
 void entreePossibleMultiplication(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 {
-	FILE* f = fopen("test/EntreesPossible.txt","w+");
+	FILE* f = fopen("test/entreesPossibles.txt","w+");
 	fprintf(f,"LISTE : \n");
 	supprimerNombre(L2,0);
 	Entier* actuel1 = L1->premier;
@@ -214,7 +214,7 @@ void entreePossibleMultiplication(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 
 void entreePossibleAddition(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 {
-	FILE* f = fopen("test/EntreesPossible.txt","w+");
+	FILE* f = fopen("test/entreesPossibles.txt","w+");
 	fprintf(f,"LISTE : \n");
 	supprimerNombre(L2,0);
 	Entier* actuel1 = L1->premier;
@@ -291,3 +291,21 @@ int neContientPas(int n, int* tab)
 	}
 	return 0;
 }
+
+void recupererBonChiffre(char* bons)
+{
+	FILE* f = fopen("test/bonschiffres.txt","r");
+	int i=0;
+	while (bons[i] != '!' && bons[i] != EOF)
+	{
+		fscanf(f,"%c",&bons[i]);
+		i++;
+	}
+	fclose(f);
+}
+
+
+/*void purgerEntrees(int* bonneEntrees)
+{
+	FILE* entrees = fopen("Entre")
+}*/

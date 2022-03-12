@@ -1,11 +1,12 @@
 #include "test.h"
 
 #define TEST_FONCTION_CHIFFRE 0
-#define TEST_PURGER_LISTE 0
+#define TEST_PURGER_LISTE 1
 #define TEST_SUPPRIMER_NOMBRE 0
 #define TEST_ENTREE_POSSIBLE 1
 #define TEST_GENERE_LISTE 0
 #define TEST_RECUPERER_CHIFFRE_INVALIDE 0
+#define TEST_RECUPERER_BON_CHIFFRE 1
 
 void testAll()
 {
@@ -41,6 +42,11 @@ void testAll()
 	if(TEST_RECUPERER_CHIFFRE_INVALIDE == 1)
 	{
 		testRecupererChiffreInvalide();
+	}
+
+	if(TEST_RECUPERER_BON_CHIFFRE == 1 )
+	{
+		testRecupererBonChiffre();
 	}
 }
 
@@ -108,7 +114,7 @@ void testEntreePossible()
 {
 	int tab[10];
 	recupererChiffreInvalide(tab);
-	genererEntreesPossiblesOper(tab,'*');
+	genererEntreesPossiblesOper(tab,'/');
 }
 
 void testGenererListeEntiers()
@@ -119,5 +125,12 @@ void testGenererListeEntiers()
 	afficherListeEntiers(genererListeEntiersDeuxChiffres());
 	printf("\nVoici la generation d'une liste de tous les entiers de 100 a 999 :");
 	afficherListeEntiers(genererListeEntiersTroisChiffres());
+}
+
+void testRecupererBonChiffre()
+{
+	char bons[10];
+	recupererBonChiffre(bons);
+	for(int i=0; i<10;i++) printf("%c ",bons[i]);
 }
 
