@@ -51,7 +51,7 @@ int tailleListe(ListeEntiers* L)
 }
 
 void supprimerNombre(ListeEntiers* L, int n)
-{	
+{
 	Entier* actuel=L->premier;
 	if (actuel->nombre == n)
 	{
@@ -62,7 +62,9 @@ void supprimerNombre(ListeEntiers* L, int n)
 	{
 		if(actuel->suivant->nombre == n)
 		{
+			Entier* aSupprimer = actuel->suivant;
 			actuel->suivant = actuel->suivant->suivant;
+			free(aSupprimer);
 			return;
 		}
 		actuel = actuel->suivant;
@@ -74,8 +76,8 @@ void purgerListe(ListeEntiers* L,int invalide)
 	Entier* actuel = L->premier;
 	while(actuel != NULL)
 	{
-		if(chiffreDesDizaines(actuel->nombre) == invalide || chiffreDesUnites(actuel->nombre) == invalide || chiffreDesCentaines(actuel->nombre) == invalide) 
-		{	
+		if(chiffreDesDizaines(actuel->nombre) == invalide || chiffreDesUnites(actuel->nombre) == invalide || chiffreDesCentaines(actuel->nombre) == invalide)
+		{
 			supprimerNombre(L,actuel->nombre);
 		}
 		actuel = actuel->suivant;
@@ -131,4 +133,5 @@ ListeEntiers* genererListeEntiersDeuxChiffres()
 	}
 	return L;
 }
+
 

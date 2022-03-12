@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1647067632 source:c:\users\hamza\documents\github\nerdlegame\codeblocksnerdlegame\entree.c
+	"entree.h"
+
+1647067654 c:\users\hamza\documents\github\nerdlegame\codeblocksnerdlegame\entree.h
+	<stdio.h>
+	<stdlib.h>
+	"liste.h"
+
+1647067682 c:\users\hamza\documents\github\nerdlegame\codeblocksnerdlegame\liste.h
+
+1647067668 source:c:\users\hamza\documents\github\nerdlegame\codeblocksnerdlegame\liste.c
+	"liste.h"
+	<stdlib.h>
+	<stdio.h>
+
+1647067702 source:c:\users\hamza\documents\github\nerdlegame\codeblocksnerdlegame\test.c
+	"test.h"
+
+1647067717 c:\users\hamza\documents\github\nerdlegame\codeblocksnerdlegame\test.h
+	<stdio.h>
+	<stdlib.h>
+	"entree.h"
+	"liste.h"
+

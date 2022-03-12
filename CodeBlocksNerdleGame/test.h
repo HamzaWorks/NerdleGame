@@ -1,3 +1,4 @@
+
 #ifndef _TEST_H_
 #define _TEST_H_
 
@@ -16,8 +17,6 @@ void testSupprimerListe();
 void testEntreePossible();
 
 void testGenererListeEntiers();
-
-void testRecupererChiffreInvalide();
 
 
 #endif

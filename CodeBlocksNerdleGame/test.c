@@ -5,7 +5,6 @@
 #define TEST_SUPPRIMER_NOMBRE 0
 #define TEST_ENTREE_POSSIBLE 0
 #define TEST_GENERE_LISTE 0
-#define TEST_RECUPERER_CHIFFRE_INVALIDE 0
 
 void testAll()
 {
@@ -37,11 +36,6 @@ void testAll()
 	{
 		testGenererListeEntiers();
 	}
-
-	if(TEST_RECUPERER_CHIFFRE_INVALIDE == 1)
-	{
-		testRecupererChiffreInvalide();
-	}
 }
 
 void testFonctionChiffreDesUnites()
@@ -69,16 +63,6 @@ void testFonctionChiffreDesDizaines()
 	printf("Le chiffre des dizaines de 1 est %d\n",chiffreDesDizaines(1));
 }
 
-void testRecupererChiffreInvalide()
-{
-	int tab[10];
-	recupererChiffreInvalide(tab);
-	for(int i=0; i<10;i++)
-	{
-		printf("\ntab %d = %d\n",i,tab[i]);
-	}
-}
-
 void testFoncionPurgerListe()
 {
 	ListeEntiers* L = initialiserListeEntiers(10);
@@ -87,7 +71,7 @@ void testFoncionPurgerListe()
 	printf("Liste initiale :\n");
 	afficherListeEntiers(L);
 	printf("\nListe purgee");
-	purgerListeTab(L,tab);
+	//purgerListeTab(L,tab);
 	afficherListeEntiers(L);
 }
 
@@ -120,4 +104,5 @@ void testGenererListeEntiers()
 	printf("\nVoici la generation d'une liste de tous les entiers de 10 a 99 :");
 	afficherListeEntiers(genererListeEntiersDeuxChiffres());
 }
+
 
