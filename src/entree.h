@@ -14,5 +14,10 @@ void recupererChiffreInvalide(int* invalide);
 
 void entreePossible(ListeEntiers* L1, ListeEntiers* L2, char oper);
 
+void entreePossibleSoustraction(ListeEntiers* L1, ListeEntiers* L2);
+void entreePossibleDivision(ListeEntiers* L1, ListeEntiers* L2);
+void entreePossibleMultiplication(ListeEntiers* L1, ListeEntiers* L2);
+void entreePossibleAddition(ListeEntiers* L1, ListeEntiers* L2);
+
 
 #endif

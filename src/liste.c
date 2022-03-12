@@ -132,3 +132,13 @@ ListeEntiers* genererListeEntiersDeuxChiffres()
 	return L;
 }
 
+
+ListeEntiers* genererListeEntiersTroisChiffres()
+{
+	ListeEntiers* L = initialiserListeEntiers(1000);
+	for(int i=0;i<100;i++)
+	{
+		supprimerNombre(L,i);
+	}
+	return L;
+}

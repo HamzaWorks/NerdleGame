@@ -1,9 +1,9 @@
 #include "test.h"
 
 #define TEST_FONCTION_CHIFFRE 0
-#define TEST_PURGER_LISTE 1
+#define TEST_PURGER_LISTE 0
 #define TEST_SUPPRIMER_NOMBRE 0
-#define TEST_ENTREE_POSSIBLE 0
+#define TEST_ENTREE_POSSIBLE 1
 #define TEST_GENERE_LISTE 0
 #define TEST_RECUPERER_CHIFFRE_INVALIDE 0
 
@@ -81,7 +81,7 @@ void testRecupererChiffreInvalide()
 
 void testFoncionPurgerListe()
 {
-	ListeEntiers* L = initialiserListeEntiers(10);
+	ListeEntiers* L = initialiserListeEntiers(500);
 	int tab[10];
 	recupererChiffreInvalide(tab);
 	printf("Liste initiale :\n");
@@ -108,9 +108,7 @@ void testEntreePossible()
 {
 	ListeEntiers* L1 = genererListeEntiersDeuxChiffres();
 	ListeEntiers* L2 = genererListeEntiersDeuxChiffres();
-	afficherListeEntiers(L1);
-	afficherListeEntiers(L2);
-	entreePossible(L1,L2,'-');
+	entreePossibleAddition(L1,L2);
 }
 
 void testGenererListeEntiers()
@@ -119,5 +117,7 @@ void testGenererListeEntiers()
 	afficherListeEntiers(genererListeEntiersUnChiffre());
 	printf("\nVoici la generation d'une liste de tous les entiers de 10 a 99 :");
 	afficherListeEntiers(genererListeEntiersDeuxChiffres());
+	printf("\nVoici la generation d'une liste de tous les entiers de 100 a 999 :");
+	afficherListeEntiers(genererListeEntiersTroisChiffres());
 }
 
