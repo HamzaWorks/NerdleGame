@@ -296,16 +296,51 @@ void recupererBonChiffre(char* bons)
 {
 	FILE* f = fopen("test/bonschiffres.txt","r");
 	int i=0;
-	while (bons[i] != '!' && bons[i] != EOF)
+	for(i=0;i<8;i++)
 	{
 		fscanf(f,"%c",&bons[i]);
-		i++;
 	}
+	bons[8] = '\0';
 	fclose(f);
 }
 
 
-/*void purgerEntrees(int* bonneEntrees)
+void purgerEntrees(char* bonneEntrees)
 {
-	FILE* entrees = fopen("Entre")
-}*/
+
+	printf(" VALEUR DE BONNE ENTREES : %s ",bonneEntrees);
+	FILE* inputEntrees = fopen("test/entreesPossibles.txt","r");
+	FILE* outputEntrees = fopen("test/entreesValides.txt","w+");
+	
+	char entree[9];
+	char lecture;
+	int i=0;
+	while( lecture != '#' )
+	{
+		for(i=0; i<8; i++)
+		{
+			fscanf(inputEntrees,"%c",&lecture);
+			entree[i] = lecture;
+		}
+		entree[8] = '\0' ;
+		printf("%s et %s \n",bonneEntrees,entree);
+		//system("pause");
+		if(comparaisonChaine(bonneEntrees,entree) != 55)
+			fprintf(outputEntrees,"%s\n",entree);
+		fscanf(inputEntrees,"%c",&lecture);
+	}
+
+	fclose(inputEntrees);
+	fclose(outputEntrees);
+}
+
+int comparaisonChaine(char* a, char* b)
+{
+	for(int i=0; i<8; i++)
+	{
+		if(a[i] == '?') ;
+		else if(a[i] != b[i]) return 55;
+	}
+
+	return 0;
+}

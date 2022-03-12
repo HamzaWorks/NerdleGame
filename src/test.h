@@ -21,5 +21,6 @@ void testRecupererChiffreInvalide();
 
 void testRecupererBonChiffre();
 
+void testPurgerEntrer();
 
 #endif

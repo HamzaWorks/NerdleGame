@@ -24,5 +24,8 @@ void genererEntreesPossiblesOper(int* tab, char oper);
 int neContientPas(int n, int* tab);
 void recupererBonChiffre(char* bons);
 
+void purgerEntrees(char* bonneEntrees);
+
+int comparaisonChaine(char* a, char* b); // retourne 55 si a different de b
 
 #endif

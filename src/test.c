@@ -1,12 +1,13 @@
 #include "test.h"
 
 #define TEST_FONCTION_CHIFFRE 0
-#define TEST_PURGER_LISTE 1
+#define TEST_PURGER_LISTE 0
 #define TEST_SUPPRIMER_NOMBRE 0
-#define TEST_ENTREE_POSSIBLE 1
+#define TEST_ENTREE_POSSIBLE 0
 #define TEST_GENERE_LISTE 0
 #define TEST_RECUPERER_CHIFFRE_INVALIDE 0
-#define TEST_RECUPERER_BON_CHIFFRE 1
+#define TEST_RECUPERER_BON_CHIFFRE 0
+#define TEST_PURGER_ENTRER 1
 
 void testAll()
 {
@@ -47,6 +48,12 @@ void testAll()
 	if(TEST_RECUPERER_BON_CHIFFRE == 1 )
 	{
 		testRecupererBonChiffre();
+	}
+
+	if(TEST_PURGER_ENTRER == 1)
+	{
+		printf("Test de purgerEntrees :\n");
+		testPurgerEntrer();
 	}
 }
 
@@ -132,5 +139,12 @@ void testRecupererBonChiffre()
 	char bons[10];
 	recupererBonChiffre(bons);
 	for(int i=0; i<10;i++) printf("%c ",bons[i]);
+}
+
+void testPurgerEntrer()
+{
+	char bons[9];
+	recupererBonChiffre(bons);
+	purgerEntrees(bons);
 }
 
