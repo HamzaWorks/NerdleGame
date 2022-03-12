@@ -134,7 +134,7 @@ void entreePossible(ListeEntiers* L1, ListeEntiers* L2, char oper)
 	}
 }  
 
-void entreePossibleSoustraction(ListeEntiers* L1, ListeEntiers* L2)
+void entreePossibleSoustraction(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 {
 	FILE* f = fopen("test/EntreesPossible.txt","w+");
 	fprintf(f,"LISTE : \n");
@@ -147,7 +147,7 @@ void entreePossibleSoustraction(ListeEntiers* L1, ListeEntiers* L2)
 		while(actuel2 != NULL)
 		{
 			res = resultatOperation(actuel1->nombre, actuel2->nombre,'-');
-			if(res < 100 && res >= 10 )
+			if(res < 100 && res >= 10 && neContientPas(res,tab) != 55 )
 			{
 				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'-');
 				fprintf(f,"%s\n",entree);
@@ -160,7 +160,7 @@ void entreePossibleSoustraction(ListeEntiers* L1, ListeEntiers* L2)
 } 
 
 
-void entreePossibleDivision(ListeEntiers* L1, ListeEntiers* L2)
+void entreePossibleDivision(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 {
 	FILE* f = fopen("test/EntreesPossible.txt","w+");
 	fprintf(f,"LISTE : \n");
@@ -174,7 +174,7 @@ void entreePossibleDivision(ListeEntiers* L1, ListeEntiers* L2)
 		while(actuel2 != NULL)
 		{
 			res = resultatOperation(actuel1->nombre, actuel2->nombre,'/');
-			if(res < 100 )
+			if(res < 100 && neContientPas(res,tab) != 55 )
 			{
 				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'/');
 				fprintf(f,"%s\n",entree);
@@ -186,7 +186,7 @@ void entreePossibleDivision(ListeEntiers* L1, ListeEntiers* L2)
 	}
 }
 
-void entreePossibleMultiplication(ListeEntiers* L1, ListeEntiers* L2)
+void entreePossibleMultiplication(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 {
 	FILE* f = fopen("test/EntreesPossible.txt","w+");
 	fprintf(f,"LISTE : \n");
@@ -200,7 +200,7 @@ void entreePossibleMultiplication(ListeEntiers* L1, ListeEntiers* L2)
 		while(actuel2 != NULL)
 		{
 			res = resultatOperation(actuel1->nombre, actuel2->nombre,'*');
-			if(res >= 100 )
+			if(res >= 100 && neContientPas(res,tab) != 55 )
 			{
 				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'*');
 				fprintf(f,"%s\n",entree);
@@ -212,7 +212,7 @@ void entreePossibleMultiplication(ListeEntiers* L1, ListeEntiers* L2)
 	}
 }
 
-void entreePossibleAddition(ListeEntiers* L1, ListeEntiers* L2)
+void entreePossibleAddition(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 {
 	FILE* f = fopen("test/EntreesPossible.txt","w+");
 	fprintf(f,"LISTE : \n");
@@ -226,7 +226,7 @@ void entreePossibleAddition(ListeEntiers* L1, ListeEntiers* L2)
 		while(actuel2 != NULL)
 		{
 			res = resultatOperation(actuel1->nombre, actuel2->nombre,'+');
-			if(res < 100 )
+			if(res < 100 && neContientPas(res,tab) != 55 )
 			{
 				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'+');
 				fprintf(f,"%s\n",entree);
@@ -236,4 +236,58 @@ void entreePossibleAddition(ListeEntiers* L1, ListeEntiers* L2)
 		actuel1 = actuel1->suivant;
 		actuel2 = L2->premier;
 	}
+}
+void genererEntreesPossiblesOper(int* tab, char oper)
+{
+	ListeEntiers* L1;
+	ListeEntiers* L2;
+
+	switch(oper)
+	{
+		case '-':
+			L1 = genererListeEntiersDeuxChiffres();
+			L2 = genererListeEntiersDeuxChiffres();
+			purgerListeTab(L1,tab);
+			purgerListeTab(L2,tab);
+			entreePossibleSoustraction(L1,L2,tab);
+			break;
+		case '*':
+			L1 = genererListeEntiersDeuxChiffres();
+			L2 = genererListeEntiersUnChiffre();
+			purgerListeTab(L1,tab);
+			purgerListeTab(L2,tab);
+			entreePossibleMultiplication(L1,L2,tab);
+			break;
+		case '/':
+			L1 = genererListeEntiersTroisChiffres();
+			L2 = genererListeEntiersUnChiffre();
+			purgerListeTab(L1,tab);
+			purgerListeTab(L2,tab);
+			entreePossibleDivision(L1,L2,tab);
+			break;
+		case '+':
+			L1 = genererListeEntiersDeuxChiffres();
+			L2 = genererListeEntiersDeuxChiffres();
+			purgerListeTab(L1,tab);
+			purgerListeTab(L2,tab);
+			entreePossibleAddition(L1,L2,tab);
+			break;
+	}
+}
+
+int neContientPas(int n, int* tab)
+{
+	for(int i=0;i<10;i++)
+	{
+		if(chiffreDesUnites(n) == tab[i]) return 55;
+		if(n>=10 && n<100)
+		{
+			if(chiffreDesDizaines(n) == tab[i]) return 55;
+		}
+		else if (n>=100)
+		{
+			if(chiffreDesCentaines(n) == tab[i]) return 55;
+		}
+	}
+	return 0;
 }

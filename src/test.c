@@ -106,9 +106,9 @@ void testSupprimerListe()
 
 void testEntreePossible()
 {
-	ListeEntiers* L1 = genererListeEntiersDeuxChiffres();
-	ListeEntiers* L2 = genererListeEntiersDeuxChiffres();
-	entreePossibleAddition(L1,L2);
+	int tab[10];
+	recupererChiffreInvalide(tab);
+	genererEntreesPossiblesOper(tab,'*');
 }
 
 void testGenererListeEntiers()
