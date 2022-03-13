@@ -11,6 +11,7 @@ char charr(int n);
 int resultatOperation(int a, int b, char oper);
 
 void recupererChiffreInvalide(int* invalide);
+void recupererInvalides(char* invalides);
 
 void entreePossible(ListeEntiers* L1, ListeEntiers* L2, char oper);
 
@@ -32,5 +33,7 @@ int comparaisonChaine(char* a, char* b); // retourne 55 si a different de b
 int comparaisonChaine(char* a, char* b);
 int verifiationContient(char* entree, char* contient);
 int entreeContient(char* entree, char c);
+
+
 
 #endif

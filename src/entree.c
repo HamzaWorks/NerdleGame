@@ -109,6 +109,21 @@ void recupererChiffreInvalide(int* invalide)
 	fclose(f);
 }
 
+void recupererInvalides(char* invalides)
+{
+	FILE* f = fopen("test/invalides.txt","r");
+	char c;
+	int i=0;
+	while (c != '!')
+	{
+		fscanf(f,"%c",&c);
+		invalides[i]=c;
+		i++;
+	}
+	invalides[i]='\0';
+	fclose(f);
+}
+
 void entreePossible(ListeEntiers* L1, ListeEntiers* L2, char oper)
 {
 	FILE* f = fopen("test/entreesPossibles.txt","w+");
