@@ -487,7 +487,7 @@ int entreeContient(char* entree, char c)
 
 void creerToutesEntrees()
 {
-	FILE* f = fopen("output/ToutesLesEntrees.txt","w+");
+	FILE* f = fopen("input/ToutesLesEntrees.txt","w+");
 	creerEntrees1oper(f);
 	toutesEntreesDeuxOper(f);
 	fprintf(f,"\n#");
@@ -518,6 +518,7 @@ void genererEntreesPossiblesOper0(FILE* f,char oper)
 			L1 = genererListeEntiersDeuxChiffres();
 			L2 = genererListeEntiersUnChiffre();
 			entreePossibleMultiplication1(f,L1,L2);
+			entreePossibleMultiplication1(f,L2,L1);
 			break;
 		case '/':
 			L1 = genererListeEntiersTroisChiffres();
