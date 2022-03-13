@@ -69,53 +69,6 @@ void supprimerNombre(ListeEntiers* L, int n)
 	}
 }
 
-void purgerListe(ListeEntiers* L,int invalide)
-{
-	Entier* actuel = L->premier;
-	while(actuel != NULL)
-	{
-		if(chiffreDesDizaines(actuel->nombre) == invalide || chiffreDesUnites(actuel->nombre) == invalide || chiffreDesCentaines(actuel->nombre) == invalide) 
-		{	
-			supprimerNombre(L,actuel->nombre);
-		}
-		actuel = actuel->suivant;
-	}
-}
-
-int chiffreDesUnites(int n)
-{
-	return n%10;
-}
-
-int chiffreDesDizaines(int n)
-{
-	if(n>=100)
-		return (n/10)%10;
-	else if (n<10)
-	{
-		return 0;
-	}
-	else
-	{
-		return n/10;
-	}
-}
-
-int chiffreDesCentaines(int n)
-{
-	return n/100;
-}
-
-void purgerListeTab(ListeEntiers* L, int* tab)
-{
-	int i=0;
-	while(tab[i] != 55)
-	{
-		purgerListe(L,tab[i]);
-		i++;
-	}
-}
-
 ListeEntiers* genererListeEntiersUnChiffre()
 {
 	ListeEntiers* L = initialiserListeEntiers(10);

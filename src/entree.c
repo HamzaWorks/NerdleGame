@@ -102,54 +102,36 @@ void creationEntree1(char* entree,int a, int b, char oper)
 
 }
 
-int resultatOperation(int a, int b, char oper)
+void creationEntree2(char* entree,int a, int b, int c, char oper1, char oper2)
 {
-	switch (oper)
+	int res = resultatOperation(resultatOperation(a,b,oper1),c,oper2);
+
+	if(res<10)
 	{
-		case '*':
-			return a*b;
-			break;
-
-		case '+':
-			return a+b;
-			break;
-
-		case '-':
-			return a-b;
-			break;
-
-		case '/':
-			if(b==0) return 10000;
-			if (a%b==0) return a/b;
-			else return 10000;
-			break;
+		entree[0] = charr(a/10);
+		entree[1] = charr(a%10);
+		entree[2] = oper1;
+		entree[3] = charr(b);
+		entree[4] = oper2;
+		entree[5] = charr(c); 
+		entree[6] = '=';
+		entree[7] = charr(res);
 	}
-	return 0;
-}
 
-int intt(char c)
-{
-	return (c - '0');
-}
-
-char charr(int n)
-{
-	return (n + '0');
-}
-
-void recupererChiffreInvalide(int* invalide)
-{
-	FILE* f = fopen("test/invalides.txt","r");
-	int n=99;
-	int i=0;
-	while (n != 55)
+	else if (res<100 && res >=10)
 	{
-		fscanf(f,"%d",&n);
-		invalide[i]=n;
-		i++;
+		entree[0] = charr(a);
+		entree[1] = oper1;
+		entree[2] = charr(b);		
+		entree[3] = oper2;
+		entree[4] = charr(c); 
+		entree[5] = '=';
+		entree[6] = charr(res/10);
+		entree[7] = charr(res%10);
 	}
-	invalide[i]=55;
-	fclose(f);
+	
+	entree[8] = '\0';
+
 }
 
 void recupererInvalides(char* invalides)
@@ -165,199 +147,9 @@ void recupererInvalides(char* invalides)
 	}
 	invalides[i]='\0';
 	fclose(f);
-}
-
-void entreePossible(ListeEntiers* L1, ListeEntiers* L2, char oper)
-{
-	FILE* f = fopen("test/entreesPossibles.txt","w+");
-	fprintf(f,"LISTE : \n");
-	Entier* actuel1 = L1->premier;
-	Entier* actuel2 = L2->premier;
-	int res;
-	char entree[9];
-	while(actuel1 != NULL)
-	{
-		while(actuel2 != NULL)
-		{
-			res = resultatOperation(actuel1->nombre, actuel2->nombre,oper);
-			if(res >= 100 )
-			{
-				creationEntree1(entree,actuel1->nombre,actuel2->nombre,oper);
-				fprintf(f,"%s\n",entree);
-			}
-			actuel2 = actuel2->suivant;
-		}
-		actuel1 = actuel1->suivant;
-		actuel2 = L2->premier;
-	}
-
-	fclose(f);
-}  
-
-void entreePossibleSoustraction(ListeEntiers* L1, ListeEntiers* L2, int* tab)
-{
-	FILE* f = fopen("test/entreesPossibles.txt","w+");
-	Entier* actuel1 = L1->premier;
-	Entier* actuel2 = L2->premier;
-	int res;
-	char entree[9];
-	while(actuel1 != NULL)
-	{
-		while(actuel2 != NULL)
-		{
-			res = resultatOperation(actuel1->nombre, actuel2->nombre,'-');
-			if(res < 100 && res >= 10 && neContientPas(res,tab) != 55 )
-			{
-				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'-');
-				fprintf(f,"%s\n",entree);
-			}
-			actuel2 = actuel2->suivant;
-		}
-		actuel1 = actuel1->suivant;
-		actuel2 = L2->premier;
-	}
-	fprintf(f,"#");
-	fclose(f);
 } 
 
-
-void entreePossibleDivision(ListeEntiers* L1, ListeEntiers* L2, int* tab)
-{
-	FILE* f = fopen("test/entreesPossibles.txt","w+");
-	supprimerNombre(L2,0);
-	Entier* actuel1 = L1->premier;
-	Entier* actuel2 = L2->premier;
-	int res;
-	char entree[9];
-	while(actuel1 != NULL)
-	{
-		while(actuel2 != NULL)
-		{
-			res = resultatOperation(actuel1->nombre, actuel2->nombre,'/');
-			if(res < 100 && neContientPas(res,tab) != 55 )
-			{
-				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'/');
-				fprintf(f,"%s\n",entree);
-			}
-			actuel2 = actuel2->suivant;
-		}
-		actuel1 = actuel1->suivant;
-		actuel2 = L2->premier;
-	}
-	fprintf(f,"#");
-	fclose(f);
-}
-
-void entreePossibleMultiplication(ListeEntiers* L1, ListeEntiers* L2, int* tab)
-{
-	FILE* f = fopen("test/entreesPossibles.txt","w+");
-	supprimerNombre(L2,0);
-	Entier* actuel1 = L1->premier;
-	Entier* actuel2 = L2->premier;
-	int res;
-	char entree[9];
-	while(actuel1 != NULL)
-	{
-		while(actuel2 != NULL)
-		{
-			res = resultatOperation(actuel1->nombre, actuel2->nombre,'*');
-			if(res >= 100 && neContientPas(res,tab) != 55 )
-			{
-				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'*');
-				fprintf(f,"%s\n",entree);
-			}
-			actuel2 = actuel2->suivant;
-		}
-		actuel1 = actuel1->suivant;
-		actuel2 = L2->premier;
-	}
-	fprintf(f,"#");
-	fclose(f);
-}
-
-void entreePossibleAddition(ListeEntiers* L1, ListeEntiers* L2, int* tab)
-{
-	FILE* f = fopen("test/entreesPossibles.txt","w+");
-	supprimerNombre(L2,0);
-	Entier* actuel1 = L1->premier;
-	Entier* actuel2 = L2->premier;
-	int res;
-	char entree[9];
-	while(actuel1 != NULL)
-	{
-		while(actuel2 != NULL)
-		{
-			res = resultatOperation(actuel1->nombre, actuel2->nombre,'+');
-			if(res < 100 && neContientPas(res,tab) != 55 )
-			{
-				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'+');
-				fprintf(f,"%s\n",entree);
-			}
-			actuel2 = actuel2->suivant;
-		}
-		actuel1 = actuel1->suivant;
-		actuel2 = L2->premier;
-	}
-	fprintf(f,"#");
-	fclose(f);
-}
-
-void genererEntreesPossiblesOper(int* tab, char oper)
-{
-	ListeEntiers* L1;
-	ListeEntiers* L2;
-
-	switch(oper)
-	{
-		case '-':
-			L1 = genererListeEntiersDeuxChiffres();
-			L2 = genererListeEntiersDeuxChiffres();
-			purgerListeTab(L1,tab);
-			purgerListeTab(L2,tab);
-			entreePossibleSoustraction(L1,L2,tab);
-			break;
-		case '*':
-			L1 = genererListeEntiersDeuxChiffres();
-			L2 = genererListeEntiersUnChiffre();
-			purgerListeTab(L1,tab);
-			purgerListeTab(L2,tab);
-			entreePossibleMultiplication(L1,L2,tab);
-			break;
-		case '/':
-			L1 = genererListeEntiersTroisChiffres();
-			L2 = genererListeEntiersUnChiffre();
-			purgerListeTab(L1,tab);
-			purgerListeTab(L2,tab);
-			entreePossibleDivision(L1,L2,tab);
-			break;
-		case '+':
-			L1 = genererListeEntiersDeuxChiffres();
-			L2 = genererListeEntiersDeuxChiffres();
-			purgerListeTab(L1,tab);
-			purgerListeTab(L2,tab);
-			entreePossibleAddition(L1,L2,tab);
-			break;
-	}
-}
-
-int neContientPas(int n, int* tab)
-{
-	for(int i=0;i<10;i++)
-	{
-		if(chiffreDesUnites(n) == tab[i]) return 55;
-		if(n>=10 && n<100)
-		{
-			if(chiffreDesDizaines(n) == tab[i]) return 55;
-		}
-		else if (n>=100)
-		{
-			if(chiffreDesCentaines(n) == tab[i]) return 55;
-		}
-	}
-	return 0;
-}
-
-void recupererBonChiffre(char* bons)
+void recupererBonnePosition(char* bons)
 {
 	FILE* f = fopen("input/bonschiffres.txt","r");
 	int i=0;
@@ -384,7 +176,7 @@ void recupererContient(char* contient)
 	fclose(f);
 }
 
-void recupererMauvaisePosition(char* mauvaisePosition)
+void recupererMauvaisePosition(char* mauvaisePosition, char* contient)
 {
 	FILE* f = fopen("input/MauvaisesPositions.txt","r");
 	int i=0;
@@ -393,9 +185,11 @@ void recupererMauvaisePosition(char* mauvaisePosition)
 	{
 		fscanf(f,"%c",&lecture);
 		if(lecture != ';') mauvaisePosition[i]=lecture;
+		if(i%2 == 0) ajouterContient(contient,lecture);
 		i++;
 	}
 	mauvaisePosition[i]='\0';
+	contient[i/2] = '\0';
 	fclose(f);
 }
 
@@ -412,32 +206,9 @@ int verificatonPosition(char* entree, char* mauvaisePosition)
 }
 
 
-void purgerEntrees(char* bonneEntrees, char* contient, char* mauvaisePosition, char* invalides)
-{
-	FILE* inputEntrees = fopen("input/ToutesLesEntrees.txt","r");
-	FILE* outputEntrees = fopen("output/entreesValides.txt","w+");
-	
-	char entree[9];
-	char lecture;
-	int i=0;
-	while( lecture != '#' )
-	{
-		for(i=0; i<8; i++)
-		{
-			fscanf(inputEntrees,"%c",&lecture);
-			entree[i] = lecture;
-		}
-		entree[8] = '\0' ;
-		if((comparaisonChaine(bonneEntrees,entree) != 55) && (verifiationContient(entree,contient) != 55) && (verificatonPosition(entree,mauvaisePosition) != 55) && (verificationInvalides(entree,invalides) != 55))
-			fprintf(outputEntrees,"%s\n",entree);
-		fscanf(inputEntrees,"%c",&lecture);
-	}
 
-	fclose(inputEntrees);
-	fclose(outputEntrees);
-}
 
-int comparaisonChaine(char* a, char* b)
+int verificationBonnePosition(char* a, char* b)
 {
 	for(int i=0; i<8; i++)
 	{
@@ -475,199 +246,49 @@ int verifiationContient(char* entree, char* contient)
 	return 0;
 }
 
-
-int entreeContient(char* entree, char c)
+void purgerEntrees(char* bonneEntrees, char* contient, char* mauvaisePosition, char* invalides)
 {
-	for(int i=0;i<9;i++)
+	FILE* inputEntrees = fopen("input/ToutesLesEntrees.txt","r");
+	FILE* outputEntrees = fopen("output/entreesValides.txt","w+");
+	
+	char entree[9];
+	char lecture;
+	int i=0;
+	while( lecture != '#' )
 	{
-		if(entree[i] == c) return 0;
+		for(i=0; i<8; i++)
+		{
+			fscanf(inputEntrees,"%c",&lecture);
+			entree[i] = lecture;
+		}
+		entree[8] = '\0' ;
+		if((verificationBonnePosition(bonneEntrees,entree) != 55) && (verifiationContient(entree,contient) != 55) && (verificatonPosition(entree,mauvaisePosition) != 55) && (verificationInvalides(entree,invalides) != 55))
+			fprintf(outputEntrees,"%s\n",entree);
+		fscanf(inputEntrees,"%c",&lecture);
 	}
-	return 55;
+
+	fclose(inputEntrees);
+	fclose(outputEntrees);
 }
 
 void creerToutesEntrees()
 {
 	FILE* f = fopen("input/ToutesLesEntrees.txt","w+");
 	creerEntrees1oper(f);
-	toutesEntreesDeuxOper(f);
+	creerEntrees2oper(f);
 	fprintf(f,"\n#");
 	fclose(f);
 }
 
 void creerEntrees1oper(FILE* f)
 {
-	genererEntreesPossiblesOper0(f,'-');
-	genererEntreesPossiblesOper0(f,'+');
-	genererEntreesPossiblesOper0(f,'/');
-	genererEntreesPossiblesOper0(f,'*');
+	genererEntreesPossiblesOper(f,'-');
+	genererEntreesPossiblesOper(f,'+');
+	genererEntreesPossiblesOper(f,'/');
+	genererEntreesPossiblesOper(f,'*');
 }
 
-void genererEntreesPossiblesOper0(FILE* f,char oper)
-{
-	ListeEntiers* L1;
-	ListeEntiers* L2;
-
-	switch(oper)
-	{
-		case '-':
-			L1 = genererListeEntiersDeuxChiffres();
-			L2 = genererListeEntiersDeuxChiffres();
-			entreePossibleSoustraction1(f,L1,L2);
-			break;
-		case '*':
-			L1 = genererListeEntiersDeuxChiffres();
-			L2 = genererListeEntiersUnChiffre();
-			entreePossibleMultiplication1(f,L1,L2);
-			entreePossibleMultiplication1(f,L2,L1);
-			break;
-		case '/':
-			L1 = genererListeEntiersTroisChiffres();
-			L2 = genererListeEntiersUnChiffre();;
-			entreePossibleDivision1(f,L1,L2);
-			break;
-		case '+':
-			L1 = genererListeEntiersDeuxChiffres();
-			L2 = genererListeEntiersDeuxChiffres();
-			entreePossibleAddition1(f,L1,L2);
-			break;
-	}
-
-}
-
-void entreePossibleSoustraction1(FILE* f,ListeEntiers* L1, ListeEntiers* L2)
-{
-	Entier* actuel1 = L1->premier;
-	Entier* actuel2 = L2->premier;
-	int res;
-	char entree[9];
-	while(actuel1 != NULL)
-	{
-		while(actuel2 != NULL)
-		{
-			res = resultatOperation(actuel1->nombre, actuel2->nombre,'-');
-			if(res < 100 && res >= 10 )
-			{
-				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'-');
-				fprintf(f,"%s\n",entree);
-			}
-			actuel2 = actuel2->suivant;
-		}
-		actuel1 = actuel1->suivant;
-		actuel2 = L2->premier;
-	}
-} 
-
-
-void entreePossibleDivision1(FILE* f, ListeEntiers* L1, ListeEntiers* L2)
-{
-	supprimerNombre(L2,0);
-	Entier* actuel1 = L1->premier;
-	Entier* actuel2 = L2->premier;
-	int res;
-	char entree[9];
-	while(actuel1 != NULL)
-	{
-		while(actuel2 != NULL)
-		{
-			res = resultatOperation(actuel1->nombre, actuel2->nombre,'/');
-			if(res < 100 )
-			{
-				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'/');
-				fprintf(f,"%s\n",entree);
-			}
-			actuel2 = actuel2->suivant;
-		}
-		actuel1 = actuel1->suivant;
-		actuel2 = L2->premier;
-	}
-}
-
-void entreePossibleMultiplication1(FILE* f, ListeEntiers* L1, ListeEntiers* L2)
-{
-	supprimerNombre(L2,0);
-	Entier* actuel1 = L1->premier;
-	Entier* actuel2 = L2->premier;
-	int res;
-	char entree[9];
-	while(actuel1 != NULL)
-	{
-		while(actuel2 != NULL)
-		{
-			res = resultatOperation(actuel1->nombre, actuel2->nombre,'*');
-			if(res >= 100)
-			{
-				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'*');
-				fprintf(f,"%s\n",entree);
-			}
-			actuel2 = actuel2->suivant;
-		}
-		actuel1 = actuel1->suivant;
-		actuel2 = L2->premier;
-	}
-}
-
-void entreePossibleAddition1(FILE* f, ListeEntiers* L1, ListeEntiers* L2)
-{
-	supprimerNombre(L2,0);
-	Entier* actuel1 = L1->premier;
-	Entier* actuel2 = L2->premier;
-	int res;
-	char entree[9];
-	while(actuel1 != NULL)
-	{
-		while(actuel2 != NULL)
-		{
-			res = resultatOperation(actuel1->nombre, actuel2->nombre,'+');
-			if(res < 100 )
-			{
-				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'+');
-				fprintf(f,"%s\n",entree);
-			}
-			actuel2 = actuel2->suivant;
-		}
-		actuel1 = actuel1->suivant;
-		actuel2 = L2->premier;
-	}
-}
-
-
-
-void creationEntree2(char* entree,int a, int b, int c, char oper1, char oper2)
-{
-	int res = resultatOperation(resultatOperation(a,b,oper1),c,oper2);
-
-	if(res<10)
-	{
-		entree[0] = charr(a/10);
-		entree[1] = charr(a%10);
-		entree[2] = oper1;
-		entree[3] = charr(b);
-		entree[4] = oper2;
-		entree[5] = charr(c); 
-		entree[6] = '=';
-		entree[7] = charr(res);
-	}
-
-	else if (res<100 && res >=10)
-	{
-		entree[0] = charr(a);
-		entree[1] = oper1;
-		entree[2] = charr(b);		
-		entree[3] = oper2;
-		entree[4] = charr(c); 
-		entree[5] = '=';
-		entree[6] = charr(res/10);
-		entree[7] = charr(res%10);
-	}
-	
-	entree[8] = '\0';
-
-}
-
-
-// ========================================================================================
-
-void toutesEntreesDeuxOper(FILE* f)
+void creerEntrees2oper(FILE* f)
 {
 	ListeEntiers* L1;
 	ListeEntiers* L2;
@@ -757,4 +378,195 @@ void toutesEntreesDeuxOper(FILE* f)
 		}
 	}
 }
+
+int entreeContient(char* entree, char c)
+{
+	for(int i=0;i<9;i++)
+	{
+		if(entree[i] == c) return 0;
+	}
+	return 55;
+}
+
+void genererEntreesPossiblesOper(FILE* f,char oper)
+{
+	ListeEntiers* L1;
+	ListeEntiers* L2;
+
+	switch(oper)
+	{
+		case '-':
+			L1 = genererListeEntiersDeuxChiffres();
+			L2 = genererListeEntiersDeuxChiffres();
+			entreePossibleSoustraction(f,L1,L2);
+			break;
+		case '*':
+			L1 = genererListeEntiersDeuxChiffres();
+			L2 = genererListeEntiersUnChiffre();
+			entreePossibleMultiplication(f,L1,L2);
+			entreePossibleMultiplication(f,L2,L1);
+			break;
+		case '/':
+			L1 = genererListeEntiersTroisChiffres();
+			L2 = genererListeEntiersUnChiffre();;
+			entreePossibleDivision(f,L1,L2);
+			break;
+		case '+':
+			L1 = genererListeEntiersDeuxChiffres();
+			L2 = genererListeEntiersDeuxChiffres();
+			entreePossibleAddition(f,L1,L2);
+			break;
+	}
+
+}
+
+void entreePossibleSoustraction(FILE* f,ListeEntiers* L1, ListeEntiers* L2)
+{
+	Entier* actuel1 = L1->premier;
+	Entier* actuel2 = L2->premier;
+	int res;
+	char entree[9];
+	while(actuel1 != NULL)
+	{
+		while(actuel2 != NULL)
+		{
+			res = resultatOperation(actuel1->nombre, actuel2->nombre,'-');
+			if(res < 100 && res >= 10 )
+			{
+				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'-');
+				fprintf(f,"%s\n",entree);
+			}
+			actuel2 = actuel2->suivant;
+		}
+		actuel1 = actuel1->suivant;
+		actuel2 = L2->premier;
+	}
+} 
+
+
+void entreePossibleDivision(FILE* f, ListeEntiers* L1, ListeEntiers* L2)
+{
+	supprimerNombre(L2,0);
+	Entier* actuel1 = L1->premier;
+	Entier* actuel2 = L2->premier;
+	int res;
+	char entree[9];
+	while(actuel1 != NULL)
+	{
+		while(actuel2 != NULL)
+		{
+			res = resultatOperation(actuel1->nombre, actuel2->nombre,'/');
+			if(res < 100 )
+			{
+				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'/');
+				fprintf(f,"%s\n",entree);
+			}
+			actuel2 = actuel2->suivant;
+		}
+		actuel1 = actuel1->suivant;
+		actuel2 = L2->premier;
+	}
+}
+
+void entreePossibleMultiplication(FILE* f, ListeEntiers* L1, ListeEntiers* L2)
+{
+	supprimerNombre(L2,0);
+	Entier* actuel1 = L1->premier;
+	Entier* actuel2 = L2->premier;
+	int res;
+	char entree[9];
+	while(actuel1 != NULL)
+	{
+		while(actuel2 != NULL)
+		{
+			res = resultatOperation(actuel1->nombre, actuel2->nombre,'*');
+			if(res >= 100)
+			{
+				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'*');
+				fprintf(f,"%s\n",entree);
+			}
+			actuel2 = actuel2->suivant;
+		}
+		actuel1 = actuel1->suivant;
+		actuel2 = L2->premier;
+	}
+}
+
+void entreePossibleAddition(FILE* f, ListeEntiers* L1, ListeEntiers* L2)
+{
+	supprimerNombre(L2,0);
+	Entier* actuel1 = L1->premier;
+	Entier* actuel2 = L2->premier;
+	int res;
+	char entree[9];
+	while(actuel1 != NULL)
+	{
+		while(actuel2 != NULL)
+		{
+			res = resultatOperation(actuel1->nombre, actuel2->nombre,'+');
+			if(res < 100 )
+			{
+				creationEntree1(entree,actuel1->nombre,actuel2->nombre,'+');
+				fprintf(f,"%s\n",entree);
+			}
+			actuel2 = actuel2->suivant;
+		}
+		actuel1 = actuel1->suivant;
+		actuel2 = L2->premier;
+	}
+}
+
+int resultatOperation(int a, int b, char oper)
+{
+	switch (oper)
+	{
+		case '*':
+			return a*b;
+			break;
+
+		case '+':
+			return a+b;
+			break;
+
+		case '-':
+			return a-b;
+			break;
+
+		case '/':
+			if(b==0) return 10000;
+			if (a%b==0) return a/b;
+			else return 10000;
+			break;
+	}
+	return 0;
+}
+
+int intt(char c)
+{
+	return (c - '0');
+}
+
+char charr(int n)
+{
+	return (n + '0');
+}
+
+void initialiserContient(char* contient)
+{
+	contient[0] = '!';
+}
+
+void ajouterContient(char* contient,char lecture)
+{
+	int i=0;
+	while(contient[i] != '!')
+	{
+		if(contient[i] == lecture) return;
+		i++;
+	}
+	contient[i] = lecture;
+	contient[i+1] = '!';
+}
+
+
 

@@ -10,7 +10,7 @@
 #define TEST_PURGER_ENTRER 0
 #define TEST_ENTREE_CONTIENT 1
 
-void testAll()
+/*void testAll()
 {
 	if(TEST_FONCTION_CHIFFRE == 1)
 	{
@@ -166,4 +166,4 @@ void testPurgerEntrer()
 void testEntreeContient()
 {
 	creerToutesEntrees();
-}
+}*/

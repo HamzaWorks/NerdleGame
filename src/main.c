@@ -4,7 +4,7 @@
 
 #define TEST_ALL 0
 
-int main()
+int main(int argc, char* argv[])
 {
 	if(TEST_ALL == 1) testAll();
 	else
@@ -16,18 +16,19 @@ int main()
 
 		// recupérer les chiffres bien placés
 		char bons[9];
-		recupererBonChiffre(bons);
+		recupererBonnePosition(bons);
 
 		// récupérer contient
 		char contient[10]; 
-		recupererContient(contient);
+		initialiserContient(contient);
+		//recupererContient(contient);
 
 		// récupérer inavlides
 		char invalides[10];
 		recupererInvalides(invalides);
 
 		char mauvaisePosition[50];
-		recupererMauvaisePosition(mauvaisePosition); 
+		recupererMauvaisePosition(mauvaisePosition, contient); 
 		printf("mauvaisePosition = %s\ncontient = %s\nbons chiffres = %s\ninvalides = %s\n",mauvaisePosition,contient,bons,invalides);
 
 		// output
