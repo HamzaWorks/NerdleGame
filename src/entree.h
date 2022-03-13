@@ -34,6 +34,16 @@ int comparaisonChaine(char* a, char* b);
 int verifiationContient(char* entree, char* contient);
 int entreeContient(char* entree, char c);
 
+// =================================================================================
+void creerToutesEntrees();
+void creerEntrees1oper(FILE* f);
 
+void genererEntreesPossiblesOper0(FILE* f,char oper);
+void entreePossibleSoustraction1(FILE* f,ListeEntiers* L1, ListeEntiers* L2);
+void entreePossibleDivision1(FILE* f, ListeEntiers* L1, ListeEntiers* L2);
+void entreePossibleMultiplication1(FILE* f, ListeEntiers* L1, ListeEntiers* L2);
+void entreePossibleAddition1(FILE* f, ListeEntiers* L1, ListeEntiers* L2);
+void creationEntree2(char* entree,int a, int b, int c, char oper1, char oper2);
+void toutesEntreesDeuxOper(FILE* f);
 
 #endif

@@ -161,7 +161,5 @@ void testPurgerEntrer()
 
 void testEntreeContient()
 {
-	char* entree = "99-89=10 ";
-	char* contient ="189/";
-	if(verifiationContient(entree,contient) != 55) printf("BRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+	creerToutesEntrees();
 }

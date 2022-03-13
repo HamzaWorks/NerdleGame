@@ -10,12 +10,6 @@ int main()
 	else
 	{
 
-		// Récupérer les chiffres invalides 
-		int tab[10];
-		recupererChiffreInvalide(tab);
-
-		// generer les entrees possible avec le bon opérateur
-		genererEntreesPossiblesOper(tab,'-');
 
 		// recupérer les chiffres bien plac"s
 		char bons[9];
