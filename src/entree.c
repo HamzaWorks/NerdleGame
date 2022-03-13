@@ -134,6 +134,13 @@ void creationEntree2(char* entree,int a, int b, int c, char oper1, char oper2)
 
 }
 
+void recupererContraintes(char* bonnePosition, char* contient, char* invalides, char* mauvaisePosition)
+{
+	recupererInvalides(invalides);
+	recupererBonnePosition(bonnePosition);
+	recupererMauvaisePosition(mauvaisePosition,contient);
+}
+
 void recupererInvalides(char* invalides)
 {
 	FILE* f = fopen("input/invalides.txt","r");
@@ -161,20 +168,6 @@ void recupererBonnePosition(char* bons)
 	fclose(f);
 }
 
-void recupererContient(char* contient)
-{
-	FILE* f = fopen("input/contient.txt","r");
-	char c;
-	int i=0;
-	while (c != '!')
-	{
-		fscanf(f,"%c",&c);
-		contient[i]=c;
-		i++;
-	}
-	contient[i]='\0';
-	fclose(f);
-}
 
 void recupererMauvaisePosition(char* mauvaisePosition, char* contient)
 {
@@ -193,7 +186,7 @@ void recupererMauvaisePosition(char* mauvaisePosition, char* contient)
 	fclose(f);
 }
 
-int verificatonPosition(char* entree, char* mauvaisePosition)
+int verificationPosition(char* entree, char* mauvaisePosition)
 {
 	int i=0;
 
@@ -204,9 +197,6 @@ int verificatonPosition(char* entree, char* mauvaisePosition)
 	}
 	return 0;
 }
-
-
-
 
 int verificationBonnePosition(char* a, char* b)
 {
@@ -262,7 +252,7 @@ void purgerEntrees(char* bonneEntrees, char* contient, char* mauvaisePosition, c
 			entree[i] = lecture;
 		}
 		entree[8] = '\0' ;
-		if((verificationBonnePosition(bonneEntrees,entree) != 55) && (verifiationContient(entree,contient) != 55) && (verificatonPosition(entree,mauvaisePosition) != 55) && (verificationInvalides(entree,invalides) != 55))
+		if((verificationBonnePosition(bonneEntrees,entree) != 55) && (verifiationContient(entree,contient) != 55) && (verificationPosition(entree,mauvaisePosition) != 55) && (verificationInvalides(entree,invalides) != 55))
 			fprintf(outputEntrees,"%s\n",entree);
 		fscanf(inputEntrees,"%c",&lecture);
 	}

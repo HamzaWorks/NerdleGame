@@ -13,14 +13,14 @@ void creationEntree2(char* entree,int a, int b, int c, char oper1, char oper2);
 
 // ======================================================================================
 // Récupération des invalides, bonnes positions, mauvaises positions
+void recupererContraintes(char* bonnePosition, char* contient, char* invalides, char* mauvaisePosition);
 void recupererInvalides(char* invalides);
 void recupererBonnePosition(char* bons);
-void recupererContient(char* contient);
 void recupererMauvaisePosition(char* mauvaisePosition, char* contient);
 
 // ======================================================================================
 // Verification des différentes contraintes
-int verificatonPosition(char* entree, char* mauvaisePosition);
+int verificationPosition(char* entree, char* mauvaisePosition);
 int verificationBonnePosition(char* a, char* b); // retourne 55 si a different de b
 int verificationInvalides(char* entree, char* invalides);
 int verifiationContient(char* entree, char* contient);
