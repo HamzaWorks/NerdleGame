@@ -5,3 +5,5 @@ Utilisation du main :
 2. Récupérer les contraintes
 
 3. Purger les entrées avec les contraintes
+
+OUTPUT FILE : output/EntreesValides.txt

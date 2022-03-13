@@ -14,14 +14,16 @@ int main(int argc, char* argv[])
 		// generation de toutes les entrees possibles
 		creerToutesEntrees();
 
-		char bonnePosition[10];
-		char contient[10]; 
-		initialiserContient(contient);
-		char invalides[10];
-		char mauvaisePosition[50];
-
+		// génération des contraintes à partir du dossier input
+		char bonnePosition[10];				// dans BonnesPositions.txt
+		char contient[10]; 					// dans MauvaisesPositions.txt
+		initialiserContient(contient);		// initalisation (très important)
+		char invalides[10];					// dans Invalides.txt
+		char mauvaisePosition[50];			// dans MauvaisesPositions.txt
+		
 		recupererContraintes(bonnePosition, contient,invalides,mauvaisePosition);
-		// output
+		
+		// application des contraintes à la liste des entrées
 		purgerEntrees(bonnePosition,contient,mauvaisePosition,invalides);
 	}
 
