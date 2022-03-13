@@ -239,7 +239,7 @@ int verifiationContient(char* entree, char* contient)
 void purgerEntrees(char* bonneEntrees, char* contient, char* mauvaisePosition, char* invalides)
 {
 	FILE* inputEntrees = fopen("input/ToutesLesEntrees.txt","r");
-	FILE* outputEntrees = fopen("output/entreesValides.txt","w+");
+	FILE* outputEntrees = fopen("output/EntreesValides.txt","w+");
 	
 	char entree[9];
 	char lecture;
