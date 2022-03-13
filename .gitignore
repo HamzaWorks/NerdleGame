@@ -3,3 +3,4 @@ output/
 obj/
 bin/
 bin/prog.exe
+*.exe
