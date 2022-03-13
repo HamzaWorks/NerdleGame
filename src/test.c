@@ -7,7 +7,8 @@
 #define TEST_GENERE_LISTE 0
 #define TEST_RECUPERER_CHIFFRE_INVALIDE 0
 #define TEST_RECUPERER_BON_CHIFFRE 0
-#define TEST_PURGER_ENTRER 1
+#define TEST_PURGER_ENTRER 0
+#define TEST_ENTREE_CONTIENT 1
 
 void testAll()
 {
@@ -55,6 +56,14 @@ void testAll()
 		printf("Test de purgerEntrees :\n");
 		testPurgerEntrer();
 	}
+
+	if(TEST_ENTREE_CONTIENT == 1)
+	{
+		printf("Test de entreeContient :\n");
+		testEntreeContient();
+	}
+
+	
 }
 
 void testFonctionChiffreDesUnites()
@@ -121,7 +130,7 @@ void testEntreePossible()
 {
 	int tab[10];
 	recupererChiffreInvalide(tab);
-	genererEntreesPossiblesOper(tab,'/');
+	genererEntreesPossiblesOper(tab,'-');
 }
 
 void testGenererListeEntiers()
@@ -144,7 +153,15 @@ void testRecupererBonChiffre()
 void testPurgerEntrer()
 {
 	char bons[9];
+	char contient[10];
 	recupererBonChiffre(bons);
-	purgerEntrees(bons);
+	recupererContient(contient);
+	purgerEntrees(bons,contient);
 }
 
+void testEntreeContient()
+{
+	char* entree = "99-89=10 ";
+	char* contient ="189/";
+	if(verifiationContient(entree,contient) != 55) printf("BRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+}

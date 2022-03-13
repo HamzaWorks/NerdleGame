@@ -23,4 +23,6 @@ void testRecupererBonChiffre();
 
 void testPurgerEntrer();
 
+void testEntreeContient();
+
 #endif

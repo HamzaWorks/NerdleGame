@@ -132,12 +132,13 @@ void entreePossible(ListeEntiers* L1, ListeEntiers* L2, char oper)
 		actuel1 = actuel1->suivant;
 		actuel2 = L2->premier;
 	}
+
+	fclose(f);
 }  
 
 void entreePossibleSoustraction(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 {
 	FILE* f = fopen("test/entreesPossibles.txt","w+");
-	fprintf(f,"LISTE : \n");
 	Entier* actuel1 = L1->premier;
 	Entier* actuel2 = L2->premier;
 	int res;
@@ -157,13 +158,14 @@ void entreePossibleSoustraction(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 		actuel1 = actuel1->suivant;
 		actuel2 = L2->premier;
 	}
+	fprintf(f,"#");
+	fclose(f);
 } 
 
 
 void entreePossibleDivision(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 {
 	FILE* f = fopen("test/entreesPossibles.txt","w+");
-	fprintf(f,"LISTE : \n");
 	supprimerNombre(L2,0);
 	Entier* actuel1 = L1->premier;
 	Entier* actuel2 = L2->premier;
@@ -184,12 +186,13 @@ void entreePossibleDivision(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 		actuel1 = actuel1->suivant;
 		actuel2 = L2->premier;
 	}
+	fprintf(f,"#");
+	fclose(f);
 }
 
 void entreePossibleMultiplication(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 {
 	FILE* f = fopen("test/entreesPossibles.txt","w+");
-	fprintf(f,"LISTE : \n");
 	supprimerNombre(L2,0);
 	Entier* actuel1 = L1->premier;
 	Entier* actuel2 = L2->premier;
@@ -210,12 +213,13 @@ void entreePossibleMultiplication(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 		actuel1 = actuel1->suivant;
 		actuel2 = L2->premier;
 	}
+	fprintf(f,"#");
+	fclose(f);
 }
 
 void entreePossibleAddition(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 {
 	FILE* f = fopen("test/entreesPossibles.txt","w+");
-	fprintf(f,"LISTE : \n");
 	supprimerNombre(L2,0);
 	Entier* actuel1 = L1->premier;
 	Entier* actuel2 = L2->premier;
@@ -236,7 +240,10 @@ void entreePossibleAddition(ListeEntiers* L1, ListeEntiers* L2, int* tab)
 		actuel1 = actuel1->suivant;
 		actuel2 = L2->premier;
 	}
+	fprintf(f,"#");
+	fclose(f);
 }
+
 void genererEntreesPossiblesOper(int* tab, char oper)
 {
 	ListeEntiers* L1;
@@ -304,8 +311,23 @@ void recupererBonChiffre(char* bons)
 	fclose(f);
 }
 
+void recupererContient(char* contient)
+{
+	FILE* f = fopen("test/contient.txt","r");
+	char c;
+	int i=0;
+	while (c != '!')
+	{
+		fscanf(f,"%c",&c);
+		contient[i]=c;
+		i++;
+	}
+	contient[i]='\0';
+	fclose(f);
+}
 
-void purgerEntrees(char* bonneEntrees)
+
+void purgerEntrees(char* bonneEntrees, char* contient)
 {
 
 	printf(" VALEUR DE BONNE ENTREES : %s ",bonneEntrees);
@@ -323,9 +345,8 @@ void purgerEntrees(char* bonneEntrees)
 			entree[i] = lecture;
 		}
 		entree[8] = '\0' ;
-		printf("%s et %s \n",bonneEntrees,entree);
-		//system("pause");
-		if(comparaisonChaine(bonneEntrees,entree) != 55)
+		printf("%s et %s et %s\n",bonneEntrees,entree,contient);
+		if((comparaisonChaine(bonneEntrees,entree) != 55) && (verifiationContient(entree,contient) != 55))
 			fprintf(outputEntrees,"%s\n",entree);
 		fscanf(inputEntrees,"%c",&lecture);
 	}
@@ -343,4 +364,25 @@ int comparaisonChaine(char* a, char* b)
 	}
 
 	return 0;
+}
+
+int verifiationContient(char* entree, char* contient)
+{
+	int i=0;
+	while(contient[i] != '!')
+	{
+		if (entreeContient(entree,contient[i]) == 55) return 55;
+		i++;
+	}
+	return 0;
+}
+
+
+int entreeContient(char* entree, char c)
+{
+	for(int i=0;i<9;i++)
+	{
+		if(entree[i] == c) return 0;
+	}
+	return 55;
 }

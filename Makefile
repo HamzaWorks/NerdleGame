@@ -18,7 +18,6 @@ INCLUDES := $(wildcard $(SRCDIR)/*.h)
 OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 rm       = rm -f
 
-
 $(BINDIR)/$(TARGET): $(OBJECTS)
 	$(LINKER) $(OBJECTS) $(LFLAGS) -o $@
 
