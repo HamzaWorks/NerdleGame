@@ -143,7 +143,7 @@ void recupererContraintes(char* bonnePosition, char* contient, char* invalides, 
 
 void recupererInvalides(char* invalides)
 {
-	FILE* f = fopen("input/invalides.txt","r");
+	FILE* f = fopen("input/Invalides.txt","r");
 	char c='c';
 	int i=0;
 	while (c != '!')
@@ -158,7 +158,7 @@ void recupererInvalides(char* invalides)
 
 void recupererBonnePosition(char* bons)
 {
-	FILE* f = fopen("input/bonschiffres.txt","r");
+	FILE* f = fopen("input/BonnesPositions.txt","r");
 	int i=0;
 	for(i=0;i<8;i++)
 	{
