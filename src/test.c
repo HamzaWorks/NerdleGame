@@ -154,14 +154,16 @@ void testPurgerEntrer()
 {
 	char bons[9];
 	char contient[10];
+	char mauvaisePosition[20];
+	char invalides[10];
+	recupererInvalides(invalides);
+	recupererMauvaisePosition(mauvaisePosition); 
 	recupererBonChiffre(bons);
 	recupererContient(contient);
-	purgerEntrees(bons,contient);
+	purgerEntrees(bons,contient,mauvaisePosition,invalides);
 }
 
 void testEntreeContient()
 {
-	char* entree = "99-89=10 ";
-	char* contient ="189/";
-	if(verifiationContient(entree,contient) != 55) printf("BRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+	creerToutesEntrees();
 }

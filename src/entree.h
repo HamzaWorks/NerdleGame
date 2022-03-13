@@ -25,14 +25,29 @@ void genererEntreesPossiblesOper(int* tab, char oper);
 int neContientPas(int n, int* tab);
 void recupererBonChiffre(char* bons);
 void recupererContient(char* contient);
+void recupererMauvaisePosition(char* mauvaisePosition);
+int verificatonPosition(char* entree, char* mauvaisePosition);
 
-void purgerEntrees(char* bonneEntrees, char* contient);
+void purgerEntrees(char* bonneEntrees, char* contient, char* mauvaisePosition, char* invalides);
 
 int comparaisonChaine(char* a, char* b); // retourne 55 si a different de b
+int verificationInvalides(char* entree, char* invalides);
 
 int comparaisonChaine(char* a, char* b);
 int verifiationContient(char* entree, char* contient);
 int entreeContient(char* entree, char c);
+
+// =================================================================================
+void creerToutesEntrees();
+void creerEntrees1oper(FILE* f);
+
+void genererEntreesPossiblesOper0(FILE* f,char oper);
+void entreePossibleSoustraction1(FILE* f,ListeEntiers* L1, ListeEntiers* L2);
+void entreePossibleDivision1(FILE* f, ListeEntiers* L1, ListeEntiers* L2);
+void entreePossibleMultiplication1(FILE* f, ListeEntiers* L1, ListeEntiers* L2);
+void entreePossibleAddition1(FILE* f, ListeEntiers* L1, ListeEntiers* L2);
+void creationEntree2(char* entree,int a, int b, int c, char oper1, char oper2);
+void toutesEntreesDeuxOper(FILE* f);
 
 
 

@@ -29,4 +29,6 @@ int chiffreDesCentaines(int n);
 ListeEntiers* genererListeEntiersUnChiffre();	// Genere une liste de 0 à 9
 ListeEntiers* genererListeEntiersDeuxChiffres(); // Genere une liste de tous les entiers à 2 chiffres
 ListeEntiers* genererListeEntiersTroisChiffres(); // Entiers 3 chiffres
+
+void recupererOperateurs(char* operateur);
 #endif // LISTE_H_INCLUDED
