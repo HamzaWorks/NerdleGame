@@ -6,14 +6,28 @@ void creationEntree1(char* entree,int a, int b, char oper)
 
 	if(res<10)
 	{
-		entree[0] = charr(a/100);
-		entree[1] = charr((a/10)%10);
-		entree[2] = charr(a%10);
-		entree[3] = oper;
-		entree[4] = charr(b/10);
-		entree[5] = charr(b%10); 
-		entree[6] = '=';
-		entree[7] = charr(res);
+		if(a>b)
+		{
+			entree[0] = charr(a/100);
+			entree[1] = charr((a/10)%10);
+			entree[2] = charr(a%10);
+			entree[3] = oper;
+			entree[4] = charr(b/10);
+			entree[5] = charr(b%10); 
+			entree[6] = '=';
+			entree[7] = charr(res);
+		}
+		else
+		{
+			entree[0] = charr(a/10);
+			entree[1] = charr(a%10);
+			entree[2] = oper;
+			entree[3] = charr(b/100);
+			entree[4] = charr((b/10)%10);
+			entree[5] = charr(b%10); 
+			entree[6] = '=';
+			entree[7] = charr(res);
+		}
 	}
 
 	else if (res<100)
@@ -31,27 +45,55 @@ void creationEntree1(char* entree,int a, int b, char oper)
 		}
 		else
 		{
-			entree[0] = charr(a/100);
-			entree[1] = charr((a/10)%10);
-			entree[2] = charr(a%10);
-			entree[3] = oper;
-			entree[4] = charr(b);
-			entree[5] = '=';
-			entree[6] = charr(res/10);
-			entree[7] = charr(res%10);
+			if(a>b)
+			{
+				entree[0] = charr(a/100);
+				entree[1] = charr((a/10)%10);
+				entree[2] = charr(a%10);
+				entree[3] = oper;
+				entree[4] = charr(b);
+				entree[5] = '=';
+				entree[6] = charr(res/10);
+				entree[7] = charr(res%10);
+			}
+			else
+			{
+				entree[0] = charr(a);
+				entree[1] = oper;
+				entree[2] = charr(a/100);
+				entree[3] = charr((b/10)%10);
+				entree[4] = charr(b%10);
+				entree[5] = '=';
+				entree[6] = charr(res/10);
+				entree[7] = charr(res%10);
+			}
 		}
 	}
 
 	else if (res>=100)
 	{
-		entree[0] = charr(a/10);
-		entree[1] = charr(a%10);
-		entree[2] = oper;
-		entree[3] = charr(b);
-		entree[4] = '=';
-		entree[5] = charr(res/100);
-		entree[6] = charr((res/10)%10);
-		entree[7] = charr(res%10);
+		if(a>b)
+		{
+			entree[0] = charr(a/10);
+			entree[1] = charr(a%10);
+			entree[2] = oper;
+			entree[3] = charr(b);
+			entree[4] = '=';
+			entree[5] = charr(res/100);
+			entree[6] = charr((res/10)%10);
+			entree[7] = charr(res%10);
+		}
+		else
+		{
+			entree[0] = charr(a);
+			entree[1] = oper;
+			entree[2] = charr(b/10);
+			entree[3] = charr(b%10);
+			entree[4] = '=';
+			entree[5] = charr(res/100);
+			entree[6] = charr((res/10)%10);
+			entree[7] = charr(res%10);
+		}
 	}
 
 
@@ -112,8 +154,8 @@ void recupererChiffreInvalide(int* invalide)
 
 void recupererInvalides(char* invalides)
 {
-	FILE* f = fopen("test/invalides.txt","r");
-	char c;
+	FILE* f = fopen("input/invalides.txt","r");
+	char c='c';
 	int i=0;
 	while (c != '!')
 	{
@@ -317,7 +359,7 @@ int neContientPas(int n, int* tab)
 
 void recupererBonChiffre(char* bons)
 {
-	FILE* f = fopen("test/bonschiffres.txt","r");
+	FILE* f = fopen("input/bonschiffres.txt","r");
 	int i=0;
 	for(i=0;i<8;i++)
 	{
@@ -329,7 +371,7 @@ void recupererBonChiffre(char* bons)
 
 void recupererContient(char* contient)
 {
-	FILE* f = fopen("test/contient.txt","r");
+	FILE* f = fopen("input/contient.txt","r");
 	char c;
 	int i=0;
 	while (c != '!')
@@ -342,11 +384,38 @@ void recupererContient(char* contient)
 	fclose(f);
 }
 
-
-void purgerEntrees(char* bonneEntrees, char* contient)
+void recupererMauvaisePosition(char* mauvaisePosition)
 {
-	FILE* inputEntrees = fopen("ToutesLesEntrees.txt","r");
-	FILE* outputEntrees = fopen("entreesValides.txt","w+");
+	FILE* f = fopen("input/MauvaisesPositions.txt","r");
+	int i=0;
+	char lecture='l';
+	while(lecture != '!')
+	{
+		fscanf(f,"%c",&lecture);
+		if(lecture != ';') mauvaisePosition[i]=lecture;
+		i++;
+	}
+	mauvaisePosition[i]='\0';
+	fclose(f);
+}
+
+int verificatonPosition(char* entree, char* mauvaisePosition)
+{
+	int i=0;
+
+	while(mauvaisePosition[i] != '!')
+	{
+		if(entree[intt(mauvaisePosition[i+1])-1] == mauvaisePosition[i]) return 55;
+		i +=2;
+	}
+	return 0;
+}
+
+
+void purgerEntrees(char* bonneEntrees, char* contient, char* mauvaisePosition, char* invalides)
+{
+	FILE* inputEntrees = fopen("input/ToutesLesEntrees.txt","r");
+	FILE* outputEntrees = fopen("output/entreesValides.txt","w+");
 	
 	char entree[9];
 	char lecture;
@@ -359,8 +428,7 @@ void purgerEntrees(char* bonneEntrees, char* contient)
 			entree[i] = lecture;
 		}
 		entree[8] = '\0' ;
-		printf("%s et %s et %s\n",bonneEntrees,entree,contient);
-		if((comparaisonChaine(bonneEntrees,entree) != 55) && (verifiationContient(entree,contient) != 55))
+		if((comparaisonChaine(bonneEntrees,entree) != 55) && (verifiationContient(entree,contient) != 55) && (verificatonPosition(entree,mauvaisePosition) != 55) && (verificationInvalides(entree,invalides) != 55))
 			fprintf(outputEntrees,"%s\n",entree);
 		fscanf(inputEntrees,"%c",&lecture);
 	}
@@ -375,6 +443,22 @@ int comparaisonChaine(char* a, char* b)
 	{
 		if(a[i] == '?') ;
 		else if(a[i] != b[i]) return 55;
+	}
+
+	return 0;
+}
+
+int verificationInvalides(char* entree, char* invalides)
+{
+	int i=0,j;
+
+	while(invalides[i] != '!')	
+	{	
+		for(j=0;j<8;j++)
+		{
+			if (invalides[i] == entree[j]) return 55;
+		}
+		i++;
 	}
 
 	return 0;
@@ -403,9 +487,10 @@ int entreeContient(char* entree, char c)
 
 void creerToutesEntrees()
 {
-	FILE* f = fopen("ToutesLesEntrees.txt","w+");
+	FILE* f = fopen("output/ToutesLesEntrees.txt","w+");
 	creerEntrees1oper(f);
 	toutesEntreesDeuxOper(f);
+	fprintf(f,"\n#");
 	fclose(f);
 }
 

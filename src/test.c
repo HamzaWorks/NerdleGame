@@ -154,9 +154,13 @@ void testPurgerEntrer()
 {
 	char bons[9];
 	char contient[10];
+	char mauvaisePosition[20];
+	char invalides[10];
+	recupererInvalides(invalides);
+	recupererMauvaisePosition(mauvaisePosition); 
 	recupererBonChiffre(bons);
 	recupererContient(contient);
-	purgerEntrees(bons,contient);
+	purgerEntrees(bons,contient,mauvaisePosition,invalides);
 }
 
 void testEntreeContient()

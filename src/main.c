@@ -11,7 +11,10 @@ int main()
 	{
 
 
-		// recupérer les chiffres bien plac"s
+		// generation de toutes les entrees possibles
+		creerToutesEntrees();
+
+		// recupérer les chiffres bien placés
 		char bons[9];
 		recupererBonChiffre(bons);
 
@@ -19,8 +22,16 @@ int main()
 		char contient[10]; 
 		recupererContient(contient);
 
+		// récupérer inavlides
+		char invalides[10];
+		recupererInvalides(invalides);
+
+		char mauvaisePosition[50];
+		recupererMauvaisePosition(mauvaisePosition); 
+		printf("mauvaisePosition = %s\ncontient = %s\nbons chiffres = %s\ninvalides = %s\n",mauvaisePosition,contient,bons,invalides);
+
 		// output
-		purgerEntrees(bons,contient);
+		purgerEntrees(bons,contient,mauvaisePosition,invalides);
 	}
 
 	  return 0;
