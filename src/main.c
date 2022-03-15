@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[])
 {
-	jeu();
+	//jeu();
 	// generation de toutes les entrees possibles
 	creerToutesEntrees();
 
