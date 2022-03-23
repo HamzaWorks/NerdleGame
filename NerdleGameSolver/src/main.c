@@ -22,15 +22,17 @@ int main(int argc, char* argv[])
 
 
 	// Proposition
-	//printf("Proposition : 3*4+5=17\n");
+	printf("Proposition : 3*4+5=17\n");
 
 	// Jeu
 	recupererEntreeRetour(entree,retour);
-	printf("\nENTREE : %s\nRETOUR : %ss",entree,retour);
+	//printf("\nENTREE : %s\nRETOUR : %ss",entree,retour);
 	traiter(C,entree,retour);
 	
 	// application des contraintes à la liste des entrées
 	purgerEntrees(C->bp,C->contient,C->mp,C->invalides);
+
+	printf("Victoire = %d",victoire());
 
 	  return 0;
 }
@@ -91,4 +93,18 @@ void ajouter(char * chaine, char c)
 	chaine[i] = c;
 	chaine[i+1] = '!';
 	chaine[i+2] = '\0';
+}
+
+int victoire()
+{
+	FILE* f = fopen("output/EntreesValides.txt","r");
+	char c = 'c';
+	int lignes = 0;
+	while(c != '#')
+	{
+		fscanf(f,"%c",&c);
+		if(c == '\n') lignes++;
+	}
+	if(lignes==1) return 1;
+	else return 0;
 }

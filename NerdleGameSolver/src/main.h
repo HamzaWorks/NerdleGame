@@ -9,5 +9,6 @@ void traiter(Contrainte* contrainte,char* entree, char* retour);
 void proposition();
 void initialiserContrainte(Contrainte* C);
 void ajouter(char * chaine, char c);
+int victoire(); // 1 si victoire
 
 #endif // MAIN_H_INCLUDED
