@@ -19,18 +19,24 @@ int main(int argc, char* argv[])
 		creerToutesEntrees();
 		printf("Entrees generees !\n");
 	}
+	//else
+		//chargerToutesEntrees();
 
 
 	// Proposition
 	printf("Proposition : 3*4+5=17\n");
 
 	// Jeu
+	
+	
 	recupererEntreeRetour(entree,retour);
 	//printf("\nENTREE : %s\nRETOUR : %ss",entree,retour);
 	traiter(C,entree,retour);
-	
+		
 	// application des contraintes à la liste des entrées
 	purgerEntrees(C->bp,C->contient,C->mp,C->invalides);
+	copierFichier("output/EntreesValides.txt","input/EntreesValides.txt");
+	
 
 	printf("Victoire = %d",victoire());
 
@@ -56,7 +62,8 @@ void traiter(Contrainte* C,char* entree, char* retour)
 		switch(retour[i])
 		{
 			case '0':
-				ajouter(C->invalides,entree[i]);
+				if((contientEntree(C->contient,entree[i]) == 0))
+					ajouter(C->invalides,entree[i]);
 				break;
 			case '1':
 				ajouter(C->mp,entree[i]);
@@ -66,6 +73,7 @@ void traiter(Contrainte* C,char* entree, char* retour)
 			case '2':
 				ajouter(C->bp,entree[i]);
 				ajouter(C->bp,charr(i+1));
+				ajouter(C->contient,entree[i]);
 				break;
 			default:
 				printf("ERROR\n");
@@ -107,4 +115,40 @@ int victoire()
 	}
 	if(lignes==1) return 1;
 	else return 0;
+}
+
+int contientEntree(char* entree, char c)
+{
+	char c0 = 'c';
+	int i = 0;
+	while(c0 != '!')
+	{
+		if(entree[i] == c)
+			return 1;
+		i++;
+	}
+	return 0;
+}
+
+void chargerToutesEntrees()
+{
+	copierFichier("Archives/ToutesLesEntrees.txt","input/EntreesValides.txt");
+}
+
+void copierFichier(char* f1, char* f2)
+{
+	FILE *fp1, *fp2;
+    char ch;
+  
+    // ouvrir le fichier en lecture
+    fp1 = fopen(f1, "r");
+    // ouvrir le fichier en écriture
+    fp2 = fopen(f2, "w+");
+  
+    // Lire le contenu du fichier
+    while((ch = getc(fp1)) != EOF)
+        putc(ch, fp2);
+  
+    fclose(fp1);
+    fclose(fp2);
 }

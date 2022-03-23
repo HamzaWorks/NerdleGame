@@ -242,7 +242,7 @@ int verifiationContient(char* entree, char* contient)
 
 void purgerEntrees(char* bonneEntrees, char* contient, char* mauvaisePosition, char* invalides)
 {
-	FILE* inputEntrees = fopen("input/ToutesLesEntrees.txt","r");
+	FILE* inputEntrees = fopen("input/EntreesValides.txt","r");
 	FILE* outputEntrees = fopen("output/EntreesValides.txt","w+");
 	printf("\nInvalides : %s\nContient : %s\nbp : %s\nmp : %s\n",invalides,contient,bonneEntrees,mauvaisePosition);
 	char entree[9];
@@ -267,7 +267,7 @@ void purgerEntrees(char* bonneEntrees, char* contient, char* mauvaisePosition, c
 
 void creerToutesEntrees()
 {
-	FILE* f = fopen("input/ToutesLesEntrees.txt","w+");
+	FILE* f = fopen("input/EntreesValides.txt","w+");
 	creerEntrees1oper(f);
 	creerEntrees2oper(f);
 	fprintf(f,"\n#");

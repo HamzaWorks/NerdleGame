@@ -10,5 +10,8 @@ void proposition();
 void initialiserContrainte(Contrainte* C);
 void ajouter(char * chaine, char c);
 int victoire(); // 1 si victoire
+int contientEntree(char* entree, char c);
+void chargerToutesEntrees();
+void copierFichier(char* f1, char* f2);
 
 #endif // MAIN_H_INCLUDED
