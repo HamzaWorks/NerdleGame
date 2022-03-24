@@ -62,7 +62,7 @@ void traiter(Contrainte* C,char* entree, char* retour)
 		switch(retour[i])
 		{
 			case '0':
-				if((contientEntree(C->contient,entree[i]) == 0))
+				//if((contientEntree(C->contient,entree[i]) == 0))
 					ajouter(C->invalides,entree[i]);
 				break;
 			case '1':

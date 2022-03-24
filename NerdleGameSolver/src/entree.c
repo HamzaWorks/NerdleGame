@@ -200,10 +200,10 @@ int verificationPosition(char* entree, char* mauvaisePosition)
 int verificationBonnePosition(char* entree, char* bonnePosition)
 {
 	int i=0;
-	//printf("entree :%s bp : %s\n",entree,bonnePosition);
+	printf("entree :%s bp : %s\n",entree,bonnePosition);
 	while(bonnePosition[i] != '!')
 	{
-		if( entree[intt(bonnePosition[i])-1] != bonnePosition[i]) 
+		if( entree[intt(bonnePosition[i+1])-1] != bonnePosition[i]) 
 		{
 			//printf("entree : %s entree[5] : %c\n", entree, entree[intt(bonnePosition[i+1])-1] );
 			return 55;
@@ -256,7 +256,7 @@ void purgerEntrees(char* bonneEntrees, char* contient, char* mauvaisePosition, c
 			entree[i] = lecture;
 		}
 		entree[8] = '\0' ;
-		if((verificationBonnePosition(entree,bonneEntrees) == 55) && (verifiationContient(entree,contient) != 55) && (verificationPosition(entree,mauvaisePosition) != 55) && (verificationInvalides(entree,invalides) != 55))
+		if((verificationBonnePosition(entree,bonneEntrees) != 55) && (verifiationContient(entree,contient) != 55) && (verificationPosition(entree,mauvaisePosition) != 55) && (verificationInvalides(entree,invalides) != 55))
 			fprintf(outputEntrees,"%s\n",entree);
 		fscanf(inputEntrees,"%c",&lecture);
 	}
